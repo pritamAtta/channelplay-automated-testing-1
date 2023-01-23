@@ -8,6 +8,7 @@ import com.test.channelplay.utils.DriverBase;
 
 public class CRMAutomationDemoObject extends DriverBase{
 	
+	//Testing GIT hub.
 	@FindBy(xpath="//input[@formcontrolname=\"email\"]")
 	private WebElement email;
 	
@@ -27,7 +28,7 @@ public class CRMAutomationDemoObject extends DriverBase{
 	private WebElement addButton;
 	
 	@FindBy(xpath="//label[text()=\"Customer Name\"]//parent::div//following-sibling::div//input")
-	private WebElement customerName_field;
+	private WebElement CRMcustomerName_field;
 	
 	public CRMAutomationDemoObject() {
 		PageFactory.initElements(getDriver(), this);
@@ -64,7 +65,7 @@ public class CRMAutomationDemoObject extends DriverBase{
 	}
 	
 	public void User_enter_customer_name() {
-		customerName_field.sendKeys("Henry Ritch");
+		CRMcustomerName_field.sendKeys("Henry Ritch");
 		sleep(4000);
 	}
 	
