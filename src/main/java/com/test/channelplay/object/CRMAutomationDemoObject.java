@@ -28,7 +28,7 @@ public class CRMAutomationDemoObject extends DriverBase{
 	private WebElement addButton;
 	
 	@FindBy(xpath="//label[text()=\"Customer Name\"]//parent::div//following-sibling::div//input")
-	private WebElement CRMcustomerName_field;
+	private WebElement CRM_Taufik_customerName_field;
 	
 	public CRMAutomationDemoObject() {
 		PageFactory.initElements(getDriver(), this);
@@ -65,7 +65,7 @@ public class CRMAutomationDemoObject extends DriverBase{
 	}
 	
 	public void User_enter_customer_name() {
-		CRMcustomerName_field.sendKeys("Henry Ritch");
+		CRM_Taufik_customerName_field.sendKeys("Henry Ritch");
 		sleep(4000);
 	}
 	
