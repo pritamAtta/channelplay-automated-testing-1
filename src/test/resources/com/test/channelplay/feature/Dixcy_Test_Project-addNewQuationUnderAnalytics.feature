@@ -10,10 +10,10 @@ Feature: Dixcy Test Project - add new quation under analytics
 				Scenario: add new quation with all fields
 						When user select add button 
 						And input values in all fields 
-						And hit save
+						And hit save button
 						And user select add product button
 						And user add product with Usage as Pump
-						And hit save button
+
 						Then quation created successfully message will show
 					
 				Scenario: verify new quation has been created with all given data
