@@ -14,5 +14,6 @@ Feature: Launching Login Page
 		When user select wrong userName and password
 		And select login button 
 		Then validation message will show
+		And login sucsessfully
 		
 		
