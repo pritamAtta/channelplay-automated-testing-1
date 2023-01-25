@@ -21,10 +21,8 @@ Feature: Dixcy Test Project - add new quation under analytics
 						Then searched quation will show 
 						And user select action button for that quation 
 						Then quation will open on edit mode
-<<<<<<< Updated upstream
 
 					When new line add by Pritam Atta
-						
-=======
+
 						And add by taufik
->>>>>>> Stashed changes
+
