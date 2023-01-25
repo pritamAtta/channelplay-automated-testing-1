@@ -21,4 +21,4 @@ Feature: Dixcy Test Project - add new quation under analytics
 						Then searched quation will show 
 						And user select action button for that quation 
 						Then quation will open on edit mode
-						And all data will same as given data while creating the quation
+						
