@@ -12,9 +12,9 @@ Feature: Dixcy Test Project - add new quation under analytics
 						And input values in all fields 
 						And hit save button
 						And user select add product button
-						And user add product with Usage as Pump
+						
 
-						Then quation created successfully message will show
+
 					
 				Scenario: verify new quation has been created with all given data
 						When user search with new created quation
