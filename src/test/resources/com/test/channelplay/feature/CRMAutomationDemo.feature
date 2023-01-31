@@ -10,7 +10,7 @@ Feature: crm automation demo
 		And select signin button
 		And user select crm
 		And user select customer
-		And user selects add button
-		And user enter customer name
+		And user selects edit button
+
 		
 		
