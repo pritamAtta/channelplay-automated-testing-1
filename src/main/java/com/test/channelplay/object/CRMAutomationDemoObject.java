@@ -1,5 +1,7 @@
 package com.test.channelplay.object;
 
+import com.test.channelplay.pages.LoginPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -7,9 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import com.test.channelplay.utils.DriverBase;
 
 public class CRMAutomationDemoObject extends DriverBase{
+
+	LoginPage loginPage = new LoginPage();
 	
 	//Testing GIT hub.
-	@FindBy(xpath="//input[@formcontrolname=\"email\"]")
+	@FindBy(xpath="")
 	private WebElement email;
 	
 	@FindBy(xpath="//input[@formcontrolname=\"password\"]")

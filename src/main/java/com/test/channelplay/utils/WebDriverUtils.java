@@ -13,7 +13,7 @@ import static java.lang.String.format;
 
 public class WebDriverUtils extends DriverBase {
 
-    private static final Logger logger = LoggerFactory.getLogger(WebDriverUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger( WebDriverUtils.class);
 
     public <T> T until(ExpectedCondition<T> condition) {
         WebDriverWait webDriverWait = new WebDriverWait(getDriver(), Duration.ofSeconds(Constants.TIMINGS_EXPLICIT_TIMEOUT));
@@ -51,7 +51,7 @@ public class WebDriverUtils extends DriverBase {
         action.moveToElement(element).click().perform();
     }
 
-    public void selectDropDownbyText(WebElement element,String text){
+    public void selectDropDownByText(WebElement element,String text){
         Select select= new Select(element);
         select.selectByVisibleText(text);
     }

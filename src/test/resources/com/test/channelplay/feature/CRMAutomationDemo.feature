@@ -1,16 +1,18 @@
 @currentFile
-Feature: crm automation demo
-
-	Background: 
-	Given user open CRM project
+Feature: crm Login
 		
-	Scenario: Do login and entered value
+	Scenario: do successful login
 		When user enter email
 		And user enter password
+<<<<<<< Updated upstream
 		And select signin button
 		And user select crm
 		And user select customer
 		And user selects edit button
+=======
+		And select signIn button
+		Then user will navigate to home page
+>>>>>>> Stashed changes
 
 		
 		
