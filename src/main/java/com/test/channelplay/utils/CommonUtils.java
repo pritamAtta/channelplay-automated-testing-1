@@ -26,7 +26,7 @@ public class CommonUtils extends DriverBase {
 
     }
 
-    private void waitForPageToLoad() {
+    public void waitForPageToLoad() {
         new WebDriverWait(getDriver(), Duration.ofSeconds(com.test.channelplay.utils.Constants.TIMINGS_EXPLICIT_TIMEOUT))
                 .until(driver -> (JavascriptExecutor) driver)
                 .executeScript("return document.readyState == 'complete'");

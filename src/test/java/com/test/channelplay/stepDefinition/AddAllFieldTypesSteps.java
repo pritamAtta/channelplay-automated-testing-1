@@ -6,6 +6,7 @@ import com.test.channelplay.utils.DriverBase;
 import com.test.channelplay.utils.GetProperty;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
@@ -16,7 +17,7 @@ public class AddAllFieldTypesSteps extends DriverBase {
 
     @Given("after login to crm user will be on the Customer page under Settings")
     public void afterLoginToCrmUserWillBeOnTheCustomerPageUnderSettings() {
-        getDriver().get(GetProperty.value("crmPortal"));
+        getDriver().get(GetProperty.value("appUrl"));
         commonUtils.validatePage("Assistive");
         addAllFieldTypeObject.login(GetProperty.value("username"), GetProperty.value("password"));
     }
@@ -40,6 +41,11 @@ public class AddAllFieldTypesSteps extends DriverBase {
     @And("select Save button")
     public void selectSaveButton() {
         addAllFieldTypeObject.SelectSaveButton();
+    }
+
+    @Then("new field will be shown in the list")
+    public void newFieldWillBeShownInTheList() {
+        addAllFieldTypeObject.NewFieldWillBeShownInTheList();
     }
 
 
@@ -101,6 +107,87 @@ public class AddAllFieldTypesSteps extends DriverBase {
 
     @And("enter Field Name for Video type")
     public void enterFieldNameForVideoType() {
-
+        addAllFieldTypeObject.EnterFieldNameForVideoType();
     }
+
+    @When("user select Reference Documents from the field type dropdown")
+    public void userSelectReferenceDocumentsFromTheFieldTypeDropdown() {
+        addAllFieldTypeObject.UserSelectReferenceDocumentsFromTheFieldTypeDropdown();
+    }
+
+    @And("enter Field Name for Reference Documents type")
+    public void enterFieldNameForReferenceDocumentsType() {
+        addAllFieldTypeObject.EnterFieldNameForReferenceDocumentsType();
+    }
+
+    @And("upload a file under Upload File")
+    public void uploadAFileUnderUploadFile() {
+        addAllFieldTypeObject.UploadAFileUnderUploadFile();
+    }
+
+    @When("user select Header Text from the field type dropdown")
+    public void userSelectHeaderTextFromTheFieldTypeDropdown() {
+        addAllFieldTypeObject.UserSelectHeaderTextFromTheFieldTypeDropdown();
+    }
+
+    @And("enter Field Name for Header Text type")
+    public void enterFieldNameForHeaderTextType() {
+        addAllFieldTypeObject.EnterFieldNameForHeaderTextType();
+    }
+
+    @When("user select Normal Text from the field type dropdown")
+    public void userSelectNormalTextFromTheFieldTypeDropdown() {
+        addAllFieldTypeObject.UserSelectNormalTextFromTheFieldTypeDropdown();
+    }
+
+    @And("enter Field Name for Normal Text type")
+    public void enterFieldNameForNormalTextType() {
+        addAllFieldTypeObject.EnterFieldNameForNormalTextType();
+    }
+
+    @When("user select Page Separator from the field type dropdown")
+    public void userSelectPageSeparatorFromTheFieldTypeDropdown() {
+        addAllFieldTypeObject.UserSelectPageSeparatorFromTheFieldTypeDropdown();
+    }
+
+    @And("enter Field Name for Page Separator type")
+    public void enterFieldNameForPageSeparatorType() {
+        addAllFieldTypeObject.EnterFieldNameForPageSeparatorType();
+    }
+
+    @When("user select Data List from the field type dropdown")
+    public void userSelectDataListFromTheFieldTypeDropdown() {
+        addAllFieldTypeObject.UserSelectDataListFromTheFieldTypeDropdown();
+    }
+
+    @And("enter Field Name for Data List type")
+    public void enterFieldNameForDataListType() {
+        addAllFieldTypeObject.EnterFieldNameForDataListType();
+    }
+
+    @And("select List Name")
+    public void selectListName() {
+        addAllFieldTypeObject.SelectListName();
+    }
+
+    @When("user select OTP Validation from the field type dropdown")
+    public void userSelectOTPValidationFromTheFieldTypeDropdown() {
+        addAllFieldTypeObject.UserSelectOTPValidationFromTheFieldTypeDropdown();
+    }
+
+    @And("enter Field Name OTP Validation type")
+    public void enterFieldNameOTPValidationType() {
+        addAllFieldTypeObject.EnterFieldNameOTPValidationType();
+    }
+
+    @And("enter Entity")
+    public void enterEntity() {
+        addAllFieldTypeObject.EnterEntity();
+    }
+
+    @And("select Entity Field")
+    public void selectEntityField() {
+        addAllFieldTypeObject.SelectEntityField();
+    }
+
 }

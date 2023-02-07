@@ -1,11 +1,22 @@
 package com.test.channelplay.object;
 
+import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class AddAllFieldTypeObject extends DriverBase {
+
+//    LoginPage loginPage = new LoginPage();
+
+//    WebElement username_field = getDriver().findElement(By.xpath("//input[@formcontrolname=\"email\"]"));
+//
+//    WebElement password_field = getDriver().findElement(By.xpath("//input[@formcontrolname=\"password\"]"));
+//
+//    WebElement submit_button = getDriver().findElement(By.xpath("//button[text()=\"Sign In\"]"));
 
 
     @FindBy(xpath = "//input[@formcontrolname=\"email\"]")
@@ -14,25 +25,30 @@ public class AddAllFieldTypeObject extends DriverBase {
     @FindBy(xpath = "//input[@formcontrolname=\"password\"]")
     private WebElement password_field;
 
-    @FindBy(xpath = "//input[@formcontrolname=\"password\"]")
+    @FindBy(xpath = "//button[text()=\"Sign In\"]")
     private WebElement submit_button;
 
-    @FindBy(xpath = "//a[@href=\"javascript:;\"]//span[text()=\" Settings \"]")
+
+//    @FindBy(xpath = "//a[@href=\"javascript:;\"]//span[text()=\" Settings \"]")
+    @FindBy(xpath="//div[@id='kt_header_menu']/ul/li[4]/a/span[2]")
     private WebElement settings_menu;
 
-    @FindBy(xpath = "//span[text()=\" Settings \"]/ancestor::li//span[text()=\" CRM \"]")
+
+//    @FindBy(xpath = "//span[text()=\" Settings \"]/ancestor::li//span[text()=\" CRM \"]")
+    @FindBy(xpath="//div[@id='kt_header_menu']/ul/li[4]/div/ul/li[2]/a/span[2]")
     private WebElement CRM_dropdown;
 
     @FindBy(xpath = "//span[text()=\" Settings \"]/ancestor::li//span[text()=\" Customer \"]")
     private WebElement customer_option;
 
-    @FindBy(xpath = "//button/span[text()=\"Add Field\"]")
+//    @FindBy(xpath = "//button/span[text()=\"Add Field\"]")
+    @FindBy(xpath="//div[@id='kt_content']/div/div/kt-company-configuration/kt-portlet/div/kt-portlet-body/kt-fields-list/div/div/div/div[3]/button")
     private WebElement addField_button;
 
     @FindBy(xpath = "//h4[text()=\"Add Field\"]/parent::div/following-sibling::div//div[@class=\"mat-select-arrow-wrapper\"]")
     private WebElement fieldType_dropdown;
 
-    @FindBy(xpath = "//mat-option[@id=\"mat-option-25\"]")
+    @FindBy(xpath = "//mat-option/span[text()=\" Numeric \"]")
     private WebElement numeric_option;
 
     @FindBy(xpath = "//label[text()=\"Field Name\"]/parent::div/following-sibling::div//input")
@@ -62,6 +78,9 @@ public class AddAllFieldTypeObject extends DriverBase {
     @FindBy(xpath = "//mat-option[@id=\"mat-option-33\"]")
     private WebElement referenceDocuments_option;
 
+        @FindBy(xpath = "//label[text()=\"Upload File\"]/parent::div/following-sibling::div//img")
+        private WebElement uploadFile_field;
+
     @FindBy(xpath = "//mat-option[@id=\"mat-option-34\"]")
     private WebElement headerText_option;
 
@@ -77,23 +96,36 @@ public class AddAllFieldTypeObject extends DriverBase {
     @FindBy(xpath = "//mat-option[@id=\"mat-option-38\"]")
     private WebElement OTPValidation_option;
 
+        @FindBy(xpath = "//label[text()=\"Entity\"]/parent::div/following-sibling::div/mat-form-field")
+        private WebElement entity_dropdown;
+
+        @FindBy(xpath = "//label[text()=\"Entity Field\"]/parent::div/following-sibling::div/mat-form-field")
+        private WebElement entityField_dropdown;
+
     @FindBy(xpath = "//button[text()=\"Save\"]")
     private WebElement save_button;
 
 
+    @FindBy(xpath = "//span[text()=\"Field added.\"]")
+    private WebElement success_message;
 
+
+
+    CommonUtils commonUtils = new CommonUtils();
 
     public AddAllFieldTypeObject(){
         PageFactory.initElements(getDriver(), this);
     }
 
+    public String NewFieldName;
 
 
     public void login(String username, String password){
         username_field.sendKeys(username);
         password_field.sendKeys(password);
         submit_button.click();
-        sleep(3000);
+        commonUtils.waitForPageToLoad();
+        sleep(5000);
         settings_menu.click();
         CRM_dropdown.click();
         customer_option.click();
@@ -111,11 +143,17 @@ public class AddAllFieldTypeObject extends DriverBase {
     }
 
     public void EnterFieldNameForNumericType(){
-        fieldName_field.sendKeys("Phone Number");
+        NewFieldName = "Company Phone Number";
+        fieldName_field.sendKeys(NewFieldName);
     }
 
     public void SelectSaveButton(){
         save_button.click();
+        sleep(4000);
+    }
+
+    public void NewFieldWillBeShownInTheList(){
+        Assert.assertTrue(getDriver().findElement(By.xpath("//div//span[text()='"+NewFieldName+"']")).isDisplayed());
     }
 
     public void UserSelectMultiSelectDropdownFromTheFieldTypeDropdown(){
@@ -176,6 +214,83 @@ public class AddAllFieldTypeObject extends DriverBase {
         fieldName_field.sendKeys("Company Location Video");
     }
 
+    public void UserSelectReferenceDocumentsFromTheFieldTypeDropdown(){
+        fieldType_dropdown.click();
+        referenceDocuments_option.click();
+        sleep(2000);
+    }
+
+    public void EnterFieldNameForReferenceDocumentsType(){
+        fieldName_field.sendKeys("Company Reference Details");
+    }
+
+    public void UploadAFileUnderUploadFile(){
+        uploadFile_field.sendKeys("samplePDF.pdf");
+    }
+
+    public void UserSelectHeaderTextFromTheFieldTypeDropdown(){
+        fieldType_dropdown.click();
+        headerText_option.click();
+        sleep(2000);
+    }
+
+    public void EnterFieldNameForHeaderTextType(){
+        fieldName_field.sendKeys("Add Header Details");
+    }
+
+    public void UserSelectNormalTextFromTheFieldTypeDropdown(){
+        fieldType_dropdown.click();
+        normalText_option.click();
+        sleep(2000);
+    }
+
+    public void EnterFieldNameForNormalTextType(){
+        fieldName_field.sendKeys("Customer Normal Text");
+    }
+
+    public void UserSelectPageSeparatorFromTheFieldTypeDropdown(){
+        fieldType_dropdown.click();
+        pageSeparator_option.click();
+        sleep(2000);
+    }
+
+    public void EnterFieldNameForPageSeparatorType(){
+        fieldName_field.sendKeys("Customer Page Separator");
+    }
+
+    public void UserSelectDataListFromTheFieldTypeDropdown(){
+        fieldType_dropdown.click();
+        dataList_option.click();
+        sleep(2000);
+    }
+
+    public void EnterFieldNameForDataListType(){
+        fieldName_field.sendKeys("Select Data List");
+    }
+
+    public void SelectListName(){
+
+    }
+
+    public void UserSelectOTPValidationFromTheFieldTypeDropdown(){
+        fieldType_dropdown.click();
+        OTPValidation_option.click();
+        sleep(2000);
+    }
+
+    public void EnterFieldNameOTPValidationType(){
+        fieldName_field.sendKeys("Verify Email OTP");
+    }
+
+    public void EnterEntity(){
+        entity_dropdown.click();
+        getDriver().findElement(By.xpath("//mat-option/span[text()=\" Contact \"]")).click();
+    }
+
+    public void SelectEntityField(){
+        entityField_dropdown.click();
+        getDriver().findElement(By.xpath("//mat-option/span[text()=\" Mobile \"]"));
+    }
 
     public void sleep(long s){
         try{

@@ -1,7 +1,5 @@
 package com.test.channelplay.utils;
 
-import java.time.Duration;
-
 import org.apache.commons.lang3.BooleanUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,8 +8,9 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.time.Duration;
 
 public class DriverBase {
 
@@ -55,3 +54,4 @@ public class DriverBase {
     }
 
 }
+
