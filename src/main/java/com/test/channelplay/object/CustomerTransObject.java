@@ -112,8 +112,9 @@ public class CustomerTransObject extends DriverBase {
     }
 
     public void Customer() {
-        sleep(5000);
+        sleep(3000);
         CRM_menu.click();
+        sleep(2000);
         Customer_menu.click();
         sleep(5000);
 
