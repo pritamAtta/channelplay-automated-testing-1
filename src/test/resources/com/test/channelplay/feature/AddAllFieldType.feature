@@ -1,4 +1,3 @@
-@currentFile
 Feature: Add all type fields under settings
 
   Background:
@@ -11,6 +10,9 @@ Feature: Add all type fields under settings
       And enter Field Name for Numeric type
       And select Save button
       Then new field will be shown in the list
+
+
+
 
     Scenario: Add field type - Multi Select Dropdown
       When user select Multi Select Dropdown from the field type dropdown

@@ -6,7 +6,8 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
 		features = "src/test/resources/com/test/channelplay/feature",
 		glue = {"com.test.channelplay.stepDefinition"},
-		tags = "@currentFile and @currentScenario",
+		tags = "@currentFile",
+		dryRun = false,
 		plugin = {"pretty", "rerun:target/rerun.txt", "timeline:target/timeline"}, monochrome=true
 		)
 

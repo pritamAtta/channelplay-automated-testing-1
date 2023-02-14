@@ -42,6 +42,7 @@ public class DriverBase {
             firefoxOptions.setAcceptInsecureCerts(true);
             driver = new FirefoxDriver(firefoxOptions);
         }
+
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Constants.TIMINGS_IMPLICIT_TIMEOUT));
