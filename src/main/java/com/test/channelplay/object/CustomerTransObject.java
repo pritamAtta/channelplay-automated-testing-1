@@ -2,12 +2,15 @@ package com.test.channelplay.object;
 
 import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
+import com.test.channelplay.utils.WebDriverUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class CustomerTransObject extends DriverBase {
 
@@ -19,6 +22,7 @@ public class CustomerTransObject extends DriverBase {
 
     @FindBy(xpath = "//button[text()=\"Sign In\"]")
     private WebElement submit_button;
+
     @FindBy(xpath = "//span[text()=\" CRM \"]")
     private WebElement CRM_menu;
 
@@ -91,23 +95,19 @@ public class CustomerTransObject extends DriverBase {
     @FindBy(xpath = "//input[@placeholder=\"Search\"]")
     private WebElement Search_bar;
 
-
+    //Global Code
     CommonUtils commonUtils = new CommonUtils();
     Actions actions = new Actions(getDriver());
     public String customerName;
-
     public String dataPicker;
-
     public CustomerTransObject() {
         PageFactory.initElements(getDriver(), this);
     }
-
     public void loginCRM(String username, String password) {
         username_field.sendKeys(username);
         password_field.sendKeys(password);
         submit_button.click();
-        commonUtils.waitForPageToLoad();
-        sleep(5000);
+        sleep(10000);
 
     }
 
@@ -117,17 +117,17 @@ public class CustomerTransObject extends DriverBase {
         sleep(2000);
         Customer_menu.click();
         sleep(5000);
-
     }
 
     public void UserClickOnAddButton() {
+
         Add_button.click();
         sleep(3000);
     }
 
     public void addCus() {
         dataPicker = commonUtils.generateRandomString(5);
-        customerName = "user " +dataPicker;
+        customerName = "user " + dataPicker;
         CustomerName_field.sendKeys(customerName);
     }
 
@@ -236,11 +236,17 @@ public class CustomerTransObject extends DriverBase {
 
     }
 
-    public void setSearch_bar(){
+    public void setSearch_bar() {
         sleep(2000);
         Search_bar.click();
         Search_bar.sendKeys(customerName);
-        sleep(4000);
+        sleep(6000);
+        String isCustomerName_xpath = ("//div[text()='" + customerName + "']");
+        WebElement isCustomerName = getDriver().findElement(By.xpath(isCustomerName_xpath));
+        String isStatusActive_xpath = ("//div[text()='" + customerName + "']//following-sibling::div[5]//button[text()='Active']");
+        WebElement isStatusActive = getDriver().findElement(By.xpath(isStatusActive_xpath));
+        Assert.assertTrue(isCustomerName.isDisplayed() && isStatusActive.isDisplayed());
+
 
     }
 
