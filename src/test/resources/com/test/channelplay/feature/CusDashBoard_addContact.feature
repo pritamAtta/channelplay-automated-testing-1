@@ -28,6 +28,7 @@ Feature: Add a new Contact from customer Dashboard
     Then click contact save button
 #    And user click CRM menu and Click on contact menu
 #    Then user check contact will added successfully with active status or not
+#    And then close
 
 
 
