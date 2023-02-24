@@ -56,4 +56,12 @@ public class CommonUtils extends DriverBase {
 
         return sb.toString();
     }
+
+    public void sleep(long s){
+        try{
+            Thread.sleep(s);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
 }

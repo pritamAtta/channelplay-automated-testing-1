@@ -32,7 +32,9 @@ public class Hooks extends DriverBase {
     }
 
     @After(order = 1)
-    public void tearDown() { driver.quit(); }
+    public void tearDown() {
+        driver.quit();
+    }
 
     private void addPageLink(io.cucumber.java.Scenario scenario) {
         scenario.log(String.format("Test page: %s", driver.getCurrentUrl()));
