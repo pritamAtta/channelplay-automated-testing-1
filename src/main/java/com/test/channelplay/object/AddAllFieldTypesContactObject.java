@@ -5,10 +5,13 @@ import com.test.channelplay.utils.DriverBase;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AddAllFieldTypeObject extends DriverBase {
+import java.util.List;
+
+public class AddAllFieldTypesContactObject extends DriverBase {
 
     @FindBy(xpath = "//input[@formcontrolname=\"email\"]")
     private WebElement username_field;
@@ -25,8 +28,11 @@ public class AddAllFieldTypeObject extends DriverBase {
     @FindBy(xpath = "//span[text()=\" Settings \"]/ancestor::li//span[text()=\" CRM \"]")
     private WebElement CRM_dropdown;
 
-    @FindBy(xpath = "//span[text()=\" Settings \"]/ancestor::li//span[text()=\" Customer \"]")
-    private WebElement customer_option;
+    @FindBy(xpath = "//span[text()=\" Contact \"]")
+    private WebElement contact_option;
+
+    @FindBy(xpath = "//span[text()=\" Opportunity \"]")
+    private WebElement opportunity_option;
 
     @FindBy(xpath = "//button/span[text()=\"Add Field\"]")
     private WebElement addField_button;
@@ -43,14 +49,14 @@ public class AddAllFieldTypeObject extends DriverBase {
     @FindBy(xpath = "//mat-option/span[text()=\" Multi Select Dropdown \"]")
     private WebElement multiSelectDropdown_option;
 
-        @FindBy(xpath = "//label[text()=\"Options\"]/parent::div/following-sibling::div//input")
-        private WebElement options_field;
+    @FindBy(xpath = "//label[text()=\"Options\"]/parent::div/following-sibling::div//input")
+    private WebElement options_field;
 
     @FindBy(xpath = "//mat-option/span[text()=\" Date \"]")
     private WebElement date_option;
 
-        @FindBy(xpath = "//label[text()=\"Value Type\"]/parent::div/following-sibling::div//mat-radio-button[@id=\"mat-radio-3\"]")
-        private WebElement CustomValueType_radioButton;
+    @FindBy(xpath = "//label[text()=\"Value Type\"]/parent::div/following-sibling::div//mat-radio-button[@id=\"mat-radio-3\"]")
+    private WebElement CustomValueType_radioButton;
 
     @FindBy(xpath = "//mat-option/span[text()=\" Email \"]")
     private WebElement email_option;
@@ -64,8 +70,8 @@ public class AddAllFieldTypeObject extends DriverBase {
     @FindBy(xpath = "//mat-option/span[text()=\" Reference Documents \"]")
     private WebElement referenceDocuments_option;
 
-        @FindBy(xpath = "//label[text()=\"Upload File\"]/parent::div/following-sibling::div//img")
-        private WebElement uploadFile_field;
+    @FindBy(xpath = "//input[@id=\"fileInput\"]")
+    private WebElement uploadFile_field;
 
     @FindBy(xpath = "//mat-option/span[text()=\" Header Text \"]")
     private WebElement headerText_option;
@@ -79,14 +85,20 @@ public class AddAllFieldTypeObject extends DriverBase {
     @FindBy(xpath = "//mat-option/span[text()=\" Data List \"]")
     private WebElement dataList_option;
 
+    @FindBy(xpath = "//label[text()=\"List Name\"]/parent::div/following-sibling::div/mat-form-field/div")
+    private WebElement listName_dropdown;
+
+    @FindBy(xpath = "//h4[text()=\"Add Field\"]/parent::div/following-sibling::div[2]/button[text()=\"Cancel\"]")
+    private WebElement cancel_button;
+
     @FindBy(xpath = "//mat-option/span[text()=\" OTP Validation \"]")
     private WebElement OTPValidation_option;
 
-        @FindBy(xpath = "//label[text()=\"Entity\"]/parent::div/following-sibling::div/mat-form-field")
-        private WebElement entity_dropdown;
+    @FindBy(xpath = "//label[text()=\"Entity\"]/parent::div/following-sibling::div/mat-form-field")
+    private WebElement entity_dropdown;
 
-        @FindBy(xpath = "//label[text()=\"Entity Field\"]/parent::div/following-sibling::div/mat-form-field")
-        private WebElement entityField_dropdown;
+    @FindBy(xpath = "//label[text()=\"Entity Field\"]/parent::div/following-sibling::div/mat-form-field")
+    private WebElement entityField_dropdown;
 
     @FindBy(xpath = "//button[text()=\"Save\"]")
     private WebElement save_button;
@@ -98,8 +110,9 @@ public class AddAllFieldTypeObject extends DriverBase {
 
 
     CommonUtils commonUtils = new CommonUtils();
+    Actions action = new Actions(getDriver());
 
-    public AddAllFieldTypeObject(){
+    public AddAllFieldTypesContactObject(){
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -114,7 +127,7 @@ public class AddAllFieldTypeObject extends DriverBase {
         sleep(10000);
         settings_menu.click();
         CRM_dropdown.click();
-        customer_option.click();
+        contact_option.click();
     }
 
     public void UserSelectAddFieldButton(){
@@ -212,13 +225,16 @@ public class AddAllFieldTypeObject extends DriverBase {
     }
 
     public void EnterFieldNameForReferenceDocumentsType(){
-        NewFieldName = "Company Reference Details Test";
+        NewFieldName = "Company Architecture Details Test";
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void UploadAFileUnderUploadFile(){
         String path = System.getProperty("user.dir");
         uploadFile_field.sendKeys(path+"/src/main/resources/Files/samplePDF.pdf");
+
+        action.moveToElement(save_button);
+        sleep(2000);
     }
 
     public void UserSelectHeaderTextFromTheFieldTypeDropdown(){
@@ -261,13 +277,48 @@ public class AddAllFieldTypeObject extends DriverBase {
     }
 
     public void EnterFieldNameForDataListType(){
-        NewFieldName = "Select Data List Test";
+        NewFieldName = "Data List Module";
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void SelectListName(){
-        dataList_option.click();
-        getDriver().findElement(By.xpath("//span[@class=\"mat-option-text\"]/parent::mat-option/following-sibling::mat-option"));
+        listName_dropdown.click();
+        sleep(2000);
+
+        WebElement option = getDriver().findElement(By.xpath("//input[@aria-label=\"dropdown search\"]/ancestor::div[2]"));
+        List<WebElement> options = option.findElements(By.tagName("mat-option"));
+
+        if(options.size()>1){
+            getDriver().findElement(By.xpath("//mat-option[2]")).click();
+        }else{
+            sleep(2000);
+            action.moveToElement(cancel_button).click().perform();
+            sleep(1000);
+            cancel_button.click();
+            sleep(1000);
+            settings_menu.click();
+            sleep(1000);
+            getDriver().findElement(By.xpath("//span[text()=\" System \"]")).click();
+            sleep(1000);
+            getDriver().findElement(By.xpath("//span[text()=\" Data List \"]")).click();
+            sleep(2000);
+            getDriver().findElement(By.xpath("//span[text()=\"Add\"]")).click();
+            sleep(2000);
+            getDriver().findElement(By.xpath("//label[text()=\"List Name\"]/parent::div/following-sibling::div//input")).sendKeys("Parent Group");
+            getDriver().findElement(By.xpath("//label[text()=\"Value\"]/parent::div/following-sibling::div//input")).sendKeys("Child Module");
+            save_button.click();
+            sleep(3000);
+            settings_menu.click();
+            CRM_dropdown.click();
+            contact_option.click();
+            addField_button.click();
+            sleep(3000);
+            UserSelectDataListFromTheFieldTypeDropdown();
+            EnterFieldNameForDataListType();
+            listName_dropdown.click();
+            sleep(2000);
+            getDriver().findElement(By.xpath("//mat-option[2]")).click();
+        }
     }
 
     public void UserSelectOTPValidationFromTheFieldTypeDropdown(){
@@ -277,18 +328,21 @@ public class AddAllFieldTypeObject extends DriverBase {
     }
 
     public void EnterFieldNameOTPValidationType(){
-        NewFieldName = "Verify Email OTP Test";
+        NewFieldName = "Verify Phone OTP Test";
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void EnterEntity(){
         entity_dropdown.click();
-        getDriver().findElement(By.xpath("//mat-option/span[text()=\" Contact \"]")).click();
+        getDriver().findElement(By.xpath("//mat-option[2]")).click();
+        sleep(3000);
     }
 
     public void SelectEntityField(){
         entityField_dropdown.click();
-        getDriver().findElement(By.xpath("//mat-option/span[text()=\" Mobile \"]"));
+        sleep(3000);
+        getDriver().findElement(By.xpath("//mat-option[2]")).click();
+        sleep(2000);
 
     }
 

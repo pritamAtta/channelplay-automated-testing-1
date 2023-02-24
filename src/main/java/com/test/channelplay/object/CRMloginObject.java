@@ -11,6 +11,7 @@ public class CRMloginObject extends DriverBase {
     @FindBy(xpath = "//input[@formcontrolname=\"email\"]")
     private WebElement email_field;
 
+
     @FindBy(xpath = "//input[@formcontrolname=\"password\"]")
     private WebElement password_field;
 
@@ -34,43 +35,41 @@ public class CRMloginObject extends DriverBase {
         email_field.sendKeys(username);
     }
 
-    public void UserEnterPassword(String password)
-    {
-        sleep(2000);
-        password_field.sendKeys(password);
-    }
 
-    public void UserClickSignin(){
-        SignIn_button.click();
-        sleep(8000);
-    }
+    public void UserEnterPassword (String password){
+            password_field.sendKeys(password);
+        }
 
-    public void UserWillBeOnTheHomepage(){
-        sleep(4000);
-        Assert.assertTrue(SettingAssistant_homepage.isDisplayed());
-    }
+        public void UserClickSignin () {
+            SignIn_button.click();
+            sleep(8000);
+        }
 
-    public void UserEnterUsernameandPassword(){
-        email_field.sendKeys();
-    }
+        public void UserWillBeOnTheHomepage () {
+            sleep(4000);
+            Assert.assertTrue(SettingAssistant_homepage.isDisplayed());
+        }
 
-    public void UserEntersValidAndInvalid(String username , String password){
-        email_field.sendKeys(username);
-        password_field.sendKeys(password);
-    }
+        public void UserEnterUsernameandPassword () {
+            email_field.sendKeys();
+        }
 
-    public void UserShouldNotLoggedInAndValidationMessageShouldBeShownAs(){
-        String expectedMessage = "Username or Password is incorrect.";
-        String ActualMessage = AlertMessage.getText();
-        Assert.assertEquals(expectedMessage , ActualMessage);
-    }
+        public void UserEntersValidAndInvalid (String username, String password){
+            email_field.sendKeys(username);
+            password_field.sendKeys(password);
+        }
 
-    public void sleep(long s){
-        try{
-            Thread.sleep(s);
-        } catch (InterruptedException e){
-            e.printStackTrace();
+        public void UserShouldNotLoggedInAndValidationMessageShouldBeShownAs () {
+            String expectedMessage = "Username or Password is incorrect.";
+            String ActualMessage = AlertMessage.getText();
+            Assert.assertEquals(expectedMessage, ActualMessage);
+        }
+
+        public void sleep( long s){
+            try {
+                Thread.sleep(s);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
-
-}
