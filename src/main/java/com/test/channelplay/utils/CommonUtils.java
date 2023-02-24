@@ -1,6 +1,9 @@
 package com.test.channelplay.utils;
 
+import com.test.channelplay.object.CRMloginObject;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import static java.lang.System.lineSeparator;
@@ -55,5 +60,13 @@ public class CommonUtils extends DriverBase {
         }
 
         return sb.toString();
+    }
+
+    public void sleep(long s) {
+        try {
+            Thread.sleep(s);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

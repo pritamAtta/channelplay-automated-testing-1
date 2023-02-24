@@ -219,7 +219,7 @@ public class CustomerTransObject extends DriverBase {
         String rootPath = System.getProperty("user.dir");
         System.out.println(rootPath + "....................>");
         Video_upload.sendKeys(rootPath + "/src/main/resources/Files/dummymp4.mp4");
-        sleep(2000);
+        sleep(5000);
     }
 
     public void setGender_Dropdown() {
