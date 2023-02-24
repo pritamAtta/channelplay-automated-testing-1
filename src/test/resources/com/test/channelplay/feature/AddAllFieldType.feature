@@ -1,10 +1,9 @@
-@currentFile
+
 Feature: Add all type fields under settings
 
   Background:
     Given after login to crm user will be on the Customer page under Settings
     And user select Add Field button
-
 
     Scenario: Add field type Numeric
       When user select numeric from the field type dropdown
@@ -49,7 +48,6 @@ Feature: Add all type fields under settings
       And select Save button
       Then new field will be shown in the list
 
-    @currentScenario
     Scenario: Add field type - Reference Documents
       When user select Reference Documents from the field type dropdown
       And enter Field Name for Reference Documents type
