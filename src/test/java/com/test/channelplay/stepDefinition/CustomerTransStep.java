@@ -4,14 +4,19 @@ import com.test.channelplay.object.CustomerTransObject;
 import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
 import com.test.channelplay.utils.GetProperty;
+import com.test.channelplay.utils.WebDriverUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
 
 public class CustomerTransStep extends DriverBase {
 
     CustomerTransObject customerTransObject = new CustomerTransObject();
+
     CommonUtils commonUtils = new CommonUtils();
     @Given("after login to crm user will be on the Customer page under CRM")
     public void afterLoginToCrmUserWillBeOnTheCustomerPageUnderCRM() {

@@ -1,4 +1,4 @@
-@currentFile
+#@currentFile
 Feature: Add a new Customer
 
   Background:
