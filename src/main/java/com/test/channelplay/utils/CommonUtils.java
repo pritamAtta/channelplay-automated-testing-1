@@ -58,15 +58,9 @@ public class CommonUtils extends DriverBase {
             int index  = (int)(alphaString.length() * Math.random());
             sb.append(alphaString.charAt(index));
         }
-
         return sb.toString();
     }
 
-
-    public void sleep(long s){
-        try{
-            Thread.sleep(s);
-        } catch (InterruptedException e){
 
     public void sleep(long s) {
         try {
@@ -76,4 +70,5 @@ public class CommonUtils extends DriverBase {
             e.printStackTrace();
         }
     }
+
 }
