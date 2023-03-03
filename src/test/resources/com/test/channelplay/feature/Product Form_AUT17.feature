@@ -1,4 +1,4 @@
-@ProductForm
+#@ProductForm
 Feature: Assistive Admin -> Product Form
 
   Background:

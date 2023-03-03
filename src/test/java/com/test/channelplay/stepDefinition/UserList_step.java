@@ -56,8 +56,8 @@ public class UserList_step extends DriverBase {
     }
 
 
-    @Then("enter mobile number")
-    public void enter_mobile_number() {
+    @Then("enter mobile number from user list")
+    public void enter_mobile_number_from_user_list() {
         userlist.Enter_mobile_number("9876543210");
     }
 

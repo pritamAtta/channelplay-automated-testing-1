@@ -1,4 +1,4 @@
-@currentFile
+#@currentFile
 Feature: Add a new Contact from customer Dashboard
 
   Background:
@@ -11,7 +11,7 @@ Feature: Add a new Contact from customer Dashboard
     And Contact_user Enter contact Name
     And select ContactType dropdown and click first option
     And enter designation
-    And enter mobile number
+    And enter mobile number from CD
     And enter contact email
     And enter contact address
     And select contact Country
@@ -25,10 +25,9 @@ Feature: Add a new Contact from customer Dashboard
     And upload video
     And select Data List Module from dropdown
     And enter Company Registered Email Test
-    Then click contact save button
-#    And user click CRM menu and Click on contact menu
-#    Then user check contact will added successfully with active status or not
-#    And then close
+    And click contact save button
+    Then user check contact will added successfully with active status or not
+
 
 
 

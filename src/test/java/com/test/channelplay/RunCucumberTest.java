@@ -6,12 +6,9 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
 		features = "src/test/resources/com/test/channelplay/feature",
 		glue = {"com.test.channelplay.stepDefinition"},
-
+		plugin = {"pretty", "rerun:target/rerun.txt", "timeline:target/timeline"},
 		tags = "@currentFile",
-		
-		dryRun = false,
-
-		plugin = {"pretty", "rerun:target/rerun.txt", "timeline:target/timeline"}, monochrome=true
+		monochrome=true
 		)
 
 public class RunCucumberTest extends AbstractTestNGCucumberTests{

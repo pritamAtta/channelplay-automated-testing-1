@@ -107,8 +107,6 @@ public class AddAllFieldTypesContactObject extends DriverBase {
     @FindBy(xpath = "//span[text()=\"Field added.\"]")
     private WebElement success_message;
 
-
-
     CommonUtils commonUtils = new CommonUtils();
     Actions action = new Actions(getDriver());
 

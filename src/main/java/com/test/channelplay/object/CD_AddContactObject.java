@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class AddContfromCusDashObject extends DriverBase {
+public class CD_AddContactObject extends DriverBase {
 
 
     @FindBy(xpath = "//input[@formcontrolname=\"email\"]")
@@ -86,8 +86,9 @@ public class AddContfromCusDashObject extends DriverBase {
     public String dataPicker;
     public String email;
     public String CompanyEmail;
+    public String salesExecutive;
 
-    public AddContfromCusDashObject() {
+    public CD_AddContactObject() {
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -128,7 +129,9 @@ public class AddContfromCusDashObject extends DriverBase {
     }
 
     public void setDesignation_field() {
-        Designation_field.sendKeys("Sales Executive");
+        dataPicker = commonUtils.generateRandomString(2);
+        salesExecutive = "Customer Support" + dataPicker;
+        Designation_field.sendKeys(salesExecutive);
     }
 
     public void setMobileNumber_Field() {
@@ -208,7 +211,7 @@ public class AddContfromCusDashObject extends DriverBase {
         String rootPath = System.getProperty("user.dir");
         System.out.println(rootPath + "....................>");
         sleep(3000);
-        Certificate_upload.sendKeys(rootPath + "/src/main/resources/Files/samplePDF.pdf");
+        Certificate_upload.sendKeys(rootPath + "/Files/samplePDF.pdf");
         sleep(6000);
     }
 
@@ -216,7 +219,7 @@ public class AddContfromCusDashObject extends DriverBase {
         String rootPath = System.getProperty("user.dir");
         System.out.println(rootPath + "....................>");
         sleep(3000);
-        LocationVideo_upload.sendKeys(rootPath + "/src/main/resources/Files/dummymp4.mp4");
+        LocationVideo_upload.sendKeys(rootPath + "/Files/dummymp4.mp4");
         sleep(5000);
     }
 
@@ -240,14 +243,13 @@ public class AddContfromCusDashObject extends DriverBase {
 
     public void setContactSearch_bar() {
         sleep(2000);
-        ContactSearch_bar.click();
-        ContactSearch_bar.sendKeys(contactName);
-        sleep(6000);
-        String isContactName_xpath = ("//div[text()='" + contactName + "']");
+        String isContactName_xpath = ("//a[text()='"+contactName+"']");
         WebElement isContactName = getDriver().findElement(By.xpath(isContactName_xpath));
-        String isStatusActive_xpath = ("//div[text()='" + contactName + "']//following-sibling::div[5]//button[text()='Active']");
-        WebElement isStatusActive = getDriver().findElement(By.xpath(isStatusActive_xpath));
-        Assert.assertTrue(isContactName.isDisplayed() && isStatusActive.isDisplayed());
+        String isSalesExecutive_xpath = ("//span[text()=' "+salesExecutive+" ']");
+        WebElement isSalesExecutivePresent = getDriver().findElement(By.xpath(isSalesExecutive_xpath));
+        System.out.println(getDriver().findElement(By.xpath("//a[text()='"+contactName+"']")).getText()+"---------------------------------------<<");
+        Assert.assertTrue(isContactName.isDisplayed() && isSalesExecutivePresent.isDisplayed());
+        sleep(4000);
 
     }
 

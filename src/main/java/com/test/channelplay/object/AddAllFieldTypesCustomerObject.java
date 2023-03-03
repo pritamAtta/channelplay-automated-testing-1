@@ -139,7 +139,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForNumericType(){
-        NewFieldName = "Company Phone Number Test";
+        NewFieldName = "Company Phone Number Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -159,12 +159,12 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForMultiSelectDropdownType(){
-        NewFieldName = "Company Test";
+        NewFieldName = "Company Test -Review3 ";
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void enterOptions(){
-        options_field.sendKeys("ChannelPlay");
+        options_field.sendKeys("ChannelPlay -Review3");
     }
 
     public void UserSelectDateFromTheFieldTypeDropdown(){
@@ -174,7 +174,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForDateType(){
-        NewFieldName = "Started Date Test";
+        NewFieldName = "Started Date Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -189,7 +189,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForEmailType(){
-        NewFieldName = "Company Registered Email Test";
+        NewFieldName = "Company Registered Email Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -200,7 +200,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForDocumentUploadType(){
-        NewFieldName = "Company Registration Certificate Test";
+        NewFieldName = "Company Registration Certificate Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -211,7 +211,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForVideoType(){
-        NewFieldName = "Company Location Video Test";
+        NewFieldName = "Company Location Video Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -222,13 +222,13 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForReferenceDocumentsType(){
-        NewFieldName = "Company Architecture Details Test";
+        NewFieldName = "Company Architecture Details Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void UploadAFileUnderUploadFile(){
         String path = System.getProperty("user.dir");
-        uploadFile_field.sendKeys(path+"/src/main/resources/Files/samplePDF.pdf");
+        uploadFile_field.sendKeys(path+"/Files/samplePDF.pdf");
 
         action.moveToElement(save_button);
         sleep(2000);
@@ -241,7 +241,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForHeaderTextType(){
-        NewFieldName = "Add Header Details Test";
+        NewFieldName = "Add Header Details Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -252,7 +252,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForNormalTextType(){
-        NewFieldName = "Customer Normal Text Test";
+        NewFieldName = "Customer Normal Text Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -263,7 +263,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForPageSeparatorType(){
-        NewFieldName = "Customer Page Separator Test";
+        NewFieldName = "Customer Page Separator Test -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -274,7 +274,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForDataListType(){
-        NewFieldName = "Data List Module";
+        NewFieldName = "Data List Module -Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -325,7 +325,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameOTPValidationType(){
-        NewFieldName = "Verify Phone OTP Test";
+        NewFieldName = "Verify Phone OTP Test-Review3";
         fieldName_field.sendKeys(NewFieldName);
     }
 

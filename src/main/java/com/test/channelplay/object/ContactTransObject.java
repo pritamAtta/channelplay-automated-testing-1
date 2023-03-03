@@ -2,12 +2,18 @@ package com.test.channelplay.object;
 
 import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
+import com.test.channelplay.utils.WebDriverUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class ContactTransObject extends DriverBase {
 
@@ -26,58 +32,100 @@ public class ContactTransObject extends DriverBase {
 
     @FindBy(xpath = "//span[text()=' Contacts ']")
     private WebElement Contact_menu;
+
     @FindBy(xpath = "//span[text()='Add']")
     private WebElement Add_button;
+
     @FindBy(xpath = "//label[text()=\"Name\"]/parent::div/following-sibling::div//input")
     private WebElement ContactName_field;
+
     @FindBy(xpath = "//label[text()=\"Contact Type\"]/parent::div/following-sibling::div/mat-form-field/div")
     private WebElement ContactType_dropdown;
+
     @FindBy(xpath = "//mat-option[2]")
     private WebElement First_Option;
+
+    @FindBy(xpath = "//mat-option[3]/mat-pseudo-checkbox")
+    private WebElement Second_Option;
+
     @FindBy(xpath = "//label[text()=\"Assign Customer\"]/parent::div/following-sibling::div/mat-form-field/div")
     private WebElement AssignCustomer_dropdown;
+
     @FindBy(xpath = "//label[text()=\"Designation\"]/parent::div/following-sibling::div//input")
     private WebElement Designation_field;
+
     @FindBy(xpath = "//label[text()=\"Mobile\" ]/parent::div/following-sibling::div//input")
     private WebElement MobileNumber_Field;
+
     @FindBy(xpath = "//label[text()=\"Email\"]/parent::div/following-sibling::div//input")
     private WebElement Email_Field;
+
     @FindBy(xpath = "//label[text()=\"Address\"]/parent::div/following-sibling::div//textarea")
     private WebElement Address_Field;
+
     @FindBy(xpath = "//mat-select[@formcontrolname=\"countryName\"]")
     private WebElement Country_Dropdown;
+
     @FindBy(xpath = "//span[text()=\" India \"]")
     private WebElement India_Option;
+
     @FindBy(xpath = "//mat-select[@formcontrolname=\"stateName\"]")
     private WebElement State_Dropdown;
+
     @FindBy(xpath = "//span[text()=\" Andhra Pradesh \"]")
     public WebElement AndhraPradesh_Option;
+
     @FindBy(xpath = "//mat-select[@formcontrolname=\"cityName\"]")
     private WebElement City_Dropdown;
+
     @FindBy(xpath = "//span[text()=\" Adilabad \"]")
     private WebElement Adilabad_Option;
+
     @FindBy(xpath = "//label[text()=\"Data List Groups\"]/parent::div/following-sibling::div/mat-form-field/div")
     private WebElement DataListGroups_dropdown;
+
     @FindBy(xpath = "//label[text()=\"Company Test\"]/parent::div/following-sibling::div/mat-form-field/div")
     private WebElement CompanyTest_Dropdown;
+
     @FindBy(xpath = "//label[text()=\"Company Phone Number Test\" ]/parent::div/following-sibling::div//input")
     private WebElement CompanyPhoneNumber_Field;
+
     @FindBy(xpath = "//button[@aria-label=\"Open calendar\"]")
     private WebElement StartedDateCalender_button;
-    @FindBy(xpath = "//div[@class=\"mat-calendar-body-cell-content mat-calendar-body-today\"]\n")
+
+    @FindBy(xpath = "//div[@class=\"mat-calendar-body-cell-content mat-calendar-body-today\"]")
     private WebElement CurrentDate;
+
     @FindBy(xpath = "//label[text()=\"Company Registration Certificate Test\"]/parent::div/following-sibling::div//input")
     private WebElement Certificate_upload;
+
     @FindBy(xpath = "//label[text()=\"Company Location Video Test\"]/parent::div/following-sibling::div//input")
     private WebElement LocationVideo_upload;
+
     @FindBy(xpath = "//label[text()=\"Data List Module\"]/parent::div/following-sibling::div/mat-form-field/div")
     private WebElement DataListModule_Dropdown;
+
     @FindBy(xpath = "//label[text()=\"Company Registered Email Test\"]/parent::div/following-sibling::div//input")
     private WebElement CompanyRegistredEmail_field;
+
     @FindBy(xpath = "//button[text()=\"Save\"]")
     private WebElement ContactSave_button;
+
     @FindBy(xpath = "//input[@placeholder=\"Search\"]")
     private WebElement ContactSearch_bar;
+
+    @FindBy(xpath = "//h4[text()='Add New ']/ancestor::div[2]//button[text()='Cancel']")
+    private WebElement CancelForm_button;
+
+    @FindBy(xpath = "//img[@title=\"Edit\"]")
+    private WebElement Edit_button;
+    @FindBy(xpath = "//div[@class=\"mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today\"]")
+    private WebElement EditCurrentDate;
+    @FindBy(xpath = "//span[text()=' Business Partner ']")
+    WebElement BusinessPartner_Option;
+    @FindBy(xpath = "//mat-option[3]")
+    WebElement DatalistSecond_Option;
+
 
     //Global Code
     CommonUtils commonUtils = new CommonUtils();
@@ -111,8 +159,8 @@ public class ContactTransObject extends DriverBase {
     }
 
     public void setContactName() {
-        dataPicker = commonUtils.generateRandomString(4);
-        contactName = "AssistiveContact" + dataPicker;
+        dataPicker = commonUtils.generateRandomString(2);
+        contactName = "Cont_user" + dataPicker;
         ContactName_field.sendKeys(contactName);
     }
 
@@ -212,7 +260,7 @@ public class ContactTransObject extends DriverBase {
         String rootPath = System.getProperty("user.dir");
         System.out.println(rootPath + "....................>");
         sleep(3000);
-        Certificate_upload.sendKeys(rootPath + "/src/main/resources/Files/samplePDF.pdf");
+        Certificate_upload.sendKeys(rootPath + "/Files/samplePDF.pdf");
         sleep(6000);
     }
 
@@ -220,7 +268,7 @@ public class ContactTransObject extends DriverBase {
         String rootPath = System.getProperty("user.dir");
         System.out.println(rootPath + "....................>");
         sleep(3000);
-        LocationVideo_upload.sendKeys(rootPath + "/src/main/resources/Files/dummymp4.mp4");
+        LocationVideo_upload.sendKeys(rootPath + "/Files/dummymp4.mp4");
         sleep(5000);
     }
 
@@ -239,7 +287,7 @@ public class ContactTransObject extends DriverBase {
 
     public void setContactSave_button() {
         ContactSave_button.click();
-        sleep(5000);
+        sleep(10000);
     }
 
     public void setContactSearch_bar() {
@@ -253,6 +301,101 @@ public class ContactTransObject extends DriverBase {
         WebElement isStatusActive = getDriver().findElement(By.xpath(isStatusActive_xpath));
         Assert.assertTrue(isContactName.isDisplayed() && isStatusActive.isDisplayed());
 
+    }
+
+    public void setCancelForm_button() {
+        CancelForm_button.click();
+        sleep(1000);
+        getDriver().navigate().refresh();
+        sleep(6000);
+    }
+    //Scenario: Edit Contact with all fields
+
+    public void setEdit_button() {
+        Edit_button.click();
+        sleep(5000);
+        ContactName_field.clear();
+        Designation_field.clear();
+        MobileNumber_Field.clear();
+        Email_Field.clear();
+        Address_Field.clear();
+        CompanyPhoneNumber_Field.clear();
+        CompanyRegistredEmail_field.clear();
+        sleep(2000);
+        WebElement PageArea = getDriver().findElement(By.xpath("//h4[text()='Edit ']/ancestor::div[2]"));
+        List<WebElement> files = PageArea.findElements(By.xpath("//img[@class=\"close-svg\"]"));
+        for (int a = 1; a <= files.size(); a++) {
+            WebElement ClearDocuments_button = getDriver().findElement(By.xpath("//img[@class=\"close-svg\"]"));
+            ClearDocuments_button.click();
+
+
+        }
+    }
+
+    public void userSelectAssignCustomerFirstOptionToSecond() {
+        AssignCustomer_dropdown.click();
+        sleep(2000);
+        WebElement SelectAll = getDriver().findElement(By.xpath("//span[text()=' user nbhxt ']"));
+        SelectAll.click();
+        sleep(2000);
+        actions.moveToElement(Second_Option).build().perform();
+        Second_Option.click();
+        sleep(1000);
+        WebElement freeSpace = getDriver().findElement(By.xpath("//label[text()=\"Designation\"]"));
+        actions.moveToElement(freeSpace).click().perform();
+        sleep(1000);
+    }
+
+    public void userSelectDataListGroupFromDropdownListFirstToSecond() {
+        DataListGroups_dropdown.click();
+        sleep(1000);
+        actions.moveToElement(DatalistSecond_Option).build().perform();
+        DatalistSecond_Option.click();
+    }
+
+    public void userSelectDataListModuleFromDropdownFromFirstOptionToSecondOption() {
+        DataListModule_Dropdown.click();
+        sleep(1000);
+        actions.moveToElement(DatalistSecond_Option).build().perform();
+        DatalistSecond_Option.click();
+    }
+
+    public void userSelectCompanyTestFromDropdownListFirstOptionToSecond() {
+        CompanyTest_Dropdown.click();
+        sleep(1000);
+        Second_Option.click();
+        sleep(1000);
+        First_Option.click();
+        sleep(1000);
+        WebElement freeSpace = getDriver().findElement(By.xpath("//label[text()=\"Company Test\"]"));
+        actions.moveToElement(freeSpace).click().perform();
+        sleep(3000);
+
+    }
+
+    public void userSelectContactTypeDropdownAndClickFirstOptionToSecondOption() {
+        ContactType_dropdown.click();
+        sleep(1000);
+        actions.moveToElement(BusinessPartner_Option).build().perform();
+        BusinessPartner_Option.click();
+
+    }
+
+    public String currentDay(){
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d");
+        String ExpectedDate = simpleDateFormat.format(date);
+        return ExpectedDate;
+    }
+
+    public void setEditCalender_button() {
+        sleep(2000);
+        StartedDateCalender_button.click();
+        sleep(1000);
+        String ExpectedDay = currentDay();
+        WebElement currentDate = getDriver().findElement(By.xpath("//div[text()=' "+ ExpectedDay +" ']"));
+        currentDate.click();
+        sleep(2000);
     }
 
     public void sleep(long s) {

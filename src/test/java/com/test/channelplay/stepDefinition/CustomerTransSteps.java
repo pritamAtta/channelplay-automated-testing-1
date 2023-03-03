@@ -4,16 +4,12 @@ import com.test.channelplay.object.CustomerTransObject;
 import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
 import com.test.channelplay.utils.GetProperty;
-import com.test.channelplay.utils.WebDriverUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 
-import java.time.Duration;
-
-public class CustomerTransStep extends DriverBase {
+public class CustomerTransSteps extends DriverBase {
 
     CustomerTransObject customerTransObject = new CustomerTransObject();
 
@@ -28,7 +24,7 @@ public class CustomerTransStep extends DriverBase {
 
     @And("user select CRM and Click on Customer")
     public void userSelectCRMAndClickOnCustomer() {
-        customerTransObject.Customer();
+         customerTransObject.Customer();
     }
 
     @When("User Click on Add button")
@@ -122,4 +118,55 @@ public class CustomerTransStep extends DriverBase {
     public void customerWillAddedSuccessfullyWithActiveStatus() {
         customerTransObject.setSearch_bar();
       }
+
+    @And("user click save and Add New button")
+    public void userClickSaveAndAddNewButton() {
+        customerTransObject.setSaveAndAddNew_button();
+
+    }
+
+    @And("then user click on cancel button")
+    public void thenUserClickOnCancelButton() {
+        customerTransObject.setCancel_button();
+    }
+    //Scenario: Edit Customer with all fields
+    @When("User Click on Edit button")
+    public void userClickOnEditButton() {
+        customerTransObject.setEdit_button();
+
+    }
+
+    @And("user select CustomerType dropdown and click first option to Second option")
+    public void userSelectCustomerTypeDropdownAndClickFirstOptionToSecondOption() {
+        customerTransObject.setChangeCustomerType();
+    }
+
+    @And("user select Country india to UAE")
+    public void userSelectCountryIndiaToUAE() {
+        customerTransObject.UAECountryOption();
+    }
+
+    @And("user select State Dubai")
+    public void userSelectStateDubai() {
+        customerTransObject.StateOptionDubai();
+    }
+
+    @And("user select City Dubai")
+    public void userSelectCityDubai() {
+        customerTransObject.DubaiCityOption();
+    }
+
+    @And("user select timezone dropdown and click on first option to second option")
+    public void userSelectTimezoneDropdownAndClickOnFirstOptionToSecondOption() {
+        customerTransObject.EditTimeZone_Dropdown();
+    }
+
+    @And("user select select gender and click first option to second option")
+    public void userSelectSelectGenderAndClickFirstOptionToSecondOption() {
+    }
+
+    @And("user click calender button and click current date")
+    public void userClickCalenderButtonAndClickCurrentDate() {
+        customerTransObject.setEditCalender_button();
+    }
 }

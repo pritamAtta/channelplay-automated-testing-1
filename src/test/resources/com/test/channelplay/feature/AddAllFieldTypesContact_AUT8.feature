@@ -1,4 +1,4 @@
-
+@AUT8
 Feature: Add all type fields under settings
 
   Background:

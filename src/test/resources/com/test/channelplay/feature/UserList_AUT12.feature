@@ -1,4 +1,4 @@
-@UserList
+#@UserList
 Feature: Assistive Admin -> Users
 
   Background:
@@ -11,7 +11,7 @@ Feature: Assistive Admin -> Users
     Then clicks on Add button opens Add new user page
 #    And  fill data into FirstName and LastName
 #    And  enter email id in email field
-#    And  enter mobile number
+    And  enter mobile number from user list
 #    And  select User Role from dropdown
     And  select reports to from dropdown
 #    And  click on checkbox of set password

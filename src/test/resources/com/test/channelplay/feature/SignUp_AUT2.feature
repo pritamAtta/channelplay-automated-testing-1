@@ -1,4 +1,4 @@
-@signUp
+#@signUp
 Feature: Assistive Sign Up
 
   Background:

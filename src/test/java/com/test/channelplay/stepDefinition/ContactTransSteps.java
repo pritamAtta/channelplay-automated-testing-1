@@ -1,6 +1,7 @@
 package com.test.channelplay.stepDefinition;
 
 import com.test.channelplay.object.ContactTransObject;
+import com.test.channelplay.object.CustomerTransObject;
 import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
 import com.test.channelplay.utils.GetProperty;
@@ -12,6 +13,7 @@ import io.cucumber.java.en.When;
 public class ContactTransSteps extends DriverBase {
 
     ContactTransObject contactTransObject = new ContactTransObject();
+    CustomerTransObject customerTransObject = new CustomerTransObject();
     CommonUtils commonUtils = new CommonUtils();
     @Given("after login to crm user will be on the Contact page under CRM")
     public void afterLoginToCrmUserWillBeOnTheContactPageUnderCRM() {
@@ -130,5 +132,49 @@ public class ContactTransSteps extends DriverBase {
     @And("user enter company phone number")
     public void userEnterCompanyPhoneNumber() {
         contactTransObject.setCompanyPhoneNumber_Field();
+    }
+
+    @And("then user click on cancel form button")
+    public void thenUserClickOnCancelFormButton() {
+        contactTransObject.setCancelForm_button();
+    }
+
+    @And("user select ContactType dropdown and click first option to second option")
+    public void userSelectContactTypeDropdownAndClickFirstOptionToSecondOption() {
+        contactTransObject.userSelectContactTypeDropdownAndClickFirstOptionToSecondOption();
+
+    }
+
+    @When("User Clicks on Edit button")
+    public void userClicksOnEditButton() {
+        contactTransObject.setEdit_button();
+    }
+
+    @And("user select assign customer first option to second")
+    public void userSelectAssignCustomerFirstOptionToSecond() {
+        contactTransObject.userSelectAssignCustomerFirstOptionToSecond();
+
+    }
+
+    @And("user select data list group from dropdown list first to second")
+    public void userSelectDataListGroupFromDropdownListFirstToSecond() {
+        contactTransObject.userSelectDataListGroupFromDropdownListFirstToSecond();
+    }
+
+    @And("user select Data List Module from dropdown from first option to second option")
+    public void userSelectDataListModuleFromDropdownFromFirstOptionToSecondOption() {
+        contactTransObject.userSelectDataListModuleFromDropdownFromFirstOptionToSecondOption();
+
+    }
+
+    @And("user select company test from dropdown list first option to second")
+    public void userSelectCompanyTestFromDropdownListFirstOptionToSecond() {
+        contactTransObject.userSelectCompanyTestFromDropdownListFirstOptionToSecond();
+
+    }
+
+    @And("user select date and click on current date")
+    public void userSelectDateAndClickOnCurrentDate() {
+        contactTransObject.setEditCalender_button();
     }
 }
