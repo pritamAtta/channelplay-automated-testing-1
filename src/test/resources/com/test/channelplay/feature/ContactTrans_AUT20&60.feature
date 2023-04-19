@@ -1,4 +1,4 @@
-#@currentFile
+@currentFilen
 Feature: Add a new contact with Save and Add New contact functionality
  and also check Update the contact.
 
