@@ -77,10 +77,14 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     private WebElement save_button;
     @FindBy(xpath = "//span[text()=\"Field added.\"]")
     private WebElement success_message;
+    @FindBy(xpath = "//input[@placeholder=\"Search\"]")
+    private WebElement search_bar;
 
     public AddAllFieldTypesOpportunityObject() {
         PageFactory.initElements(getDriver(), this);
     }
+
+    public String randomString = commonUtils.generateRandomString(3);
 
     public void login(String username, String password) {
         username_field.sendKeys(username);
@@ -105,7 +109,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForNumericType() {
-        NewFieldName = "Company Phone Number Test";
+        NewFieldName = "Company Phone Number Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -115,7 +119,11 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void NewFieldWillBeShownInTheList() {
-        Assert.assertTrue(getDriver().findElement(By.xpath("//div//span[text()='" + NewFieldName + "']")).isDisplayed());
+        sleep(2000);
+        WebElement createdField = getDriver().findElement(By.xpath("//div//span[text()='" + NewFieldName + "']"));
+        search_bar.sendKeys(NewFieldName);
+        sleep(5000);
+        Assert.assertTrue(createdField.isDisplayed());
     }
 
     public void UserSelectMultiSelectDropdownFromTheFieldTypeDropdown() {
@@ -125,12 +133,12 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForMultiSelectDropdownType() {
-        NewFieldName = "Follow Up";
+        NewFieldName = "Follow Up " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void enterOptions() {
-        options_field.sendKeys("By Week");
+        options_field.sendKeys("By Week " + randomString);
     }
 
     public void UserSelectDateFromTheFieldTypeDropdown() {
@@ -140,7 +148,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForDateType() {
-        NewFieldName = "Visit Date";
+        NewFieldName = "Visit Date " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -155,7 +163,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForEmailType() {
-        NewFieldName = "Store Email";
+        NewFieldName = "Store Email " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -166,7 +174,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForDocumentUploadType() {
-        NewFieldName = "Plan Document";
+        NewFieldName = "Plan Document " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -177,7 +185,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForVideoType() {
-        NewFieldName = "Customer Testimonial";
+        NewFieldName = "Customer Testimonial " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -188,16 +196,14 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForReferenceDocumentsType() {
-        NewFieldName = "Self Reference";
+        NewFieldName = "Self Reference " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void UploadAFileUnderUploadFile() {
         String path = System.getProperty("user.dir");
-        uploadFile_field.sendKeys(path + "/src/main/resources/Files/samplePDF.pdf");
-
-        action.moveToElement(save_button);
-        sleep(2000);
+        uploadFile_field.sendKeys(path + "/Files/sample.pdf");
+        sleep(4000);
     }
 
     public void UserSelectHeaderTextFromTheFieldTypeDropdown() {
@@ -207,7 +213,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForHeaderTextType() {
-        NewFieldName = "Store Details";
+        NewFieldName = "Store Details " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -218,7 +224,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForNormalTextType() {
-        NewFieldName = "Store Type";
+        NewFieldName = "Store Type " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -229,7 +235,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForPageSeparatorType() {
-        NewFieldName = "Another Details";
+        NewFieldName = "Another Details " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -240,7 +246,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameForDataListType() {
-        NewFieldName = "Products";
+        NewFieldName = "Products " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -291,7 +297,7 @@ public class AddAllFieldTypesOpportunityObject extends DriverBase {
     }
 
     public void EnterFieldNameOTPValidationType() {
-        NewFieldName = "Enter OTP";
+        NewFieldName = "Enter OTP " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 

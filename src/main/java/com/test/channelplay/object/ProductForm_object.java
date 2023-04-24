@@ -124,7 +124,7 @@ public class ProductForm_object extends DriverBase {
     }
 
     public void Clicks_on_menu_Admin_and_submenu_Product_Form() {
-        commonutils.sleep(3000);
+        commonutils.sleep(10000);
         Admin_menu.click();
         ProductForm_submenu.click();
         commonutils.sleep(2000);

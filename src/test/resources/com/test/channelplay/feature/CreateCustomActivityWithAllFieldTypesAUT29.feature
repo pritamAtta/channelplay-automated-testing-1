@@ -1,4 +1,4 @@
-
+@AUT29
 Feature: Create custom activity and all all field types for this new activity
 
   Background:

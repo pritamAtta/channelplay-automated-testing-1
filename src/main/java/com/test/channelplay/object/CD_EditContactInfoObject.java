@@ -74,7 +74,7 @@ public class CD_EditContactInfoObject extends DriverBase {
     }
     public void setDashboard_button(){
         Dashboard_button.click();
-        sleep(4000);
+        sleep(6000);
     }
     public void setClickEditInfo_button(){
         ClickEditInfo_button.click();

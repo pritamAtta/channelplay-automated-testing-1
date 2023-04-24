@@ -1,4 +1,4 @@
-#@currentFile
+@AUT43
 Feature: Add a new Contact from customer Dashboard
 
   Background:

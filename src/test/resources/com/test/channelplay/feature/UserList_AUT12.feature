@@ -1,4 +1,4 @@
-#@UserList
+@AUT12
 Feature: Assistive Admin -> Users
 
   Background:

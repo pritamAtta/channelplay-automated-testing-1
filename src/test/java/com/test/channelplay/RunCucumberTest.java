@@ -7,9 +7,12 @@ import org.testng.annotations.DataProvider;
 		features = "src/test/resources/com/test/channelplay/feature",
 		glue = {"com.test.channelplay.stepDefinition"},
 		plugin = {"pretty", "rerun:target/rerun.txt", "timeline:target/timeline"},
-		tags = "@currentFile",
+		dryRun = false,
+		tags = "@AUT21 and @Scenario1",
 		monochrome=true
+
 		)
+
 
 public class RunCucumberTest extends AbstractTestNGCucumberTests{
 

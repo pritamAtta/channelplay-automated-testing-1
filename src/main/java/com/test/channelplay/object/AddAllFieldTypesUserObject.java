@@ -16,7 +16,7 @@ import java.util.List;
 
 public class AddAllFieldTypesUserObject extends DriverBase {
 
-    public String NewFieldName;
+    public String NewFieldName = "null";
     CommonUtils commonUtils = new CommonUtils();
     Actions action = new Actions(getDriver());
     WebDriverUtils webDriverUtils = new WebDriverUtils();
@@ -126,6 +126,13 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     @FindBy(xpath = "//span[text()=\"Field added.\"]")
     private WebElement success_message;
 
+    @FindBy(xpath = "//input[@placeholder=\"Search\"]")
+    private WebElement search_bar;
+
+
+    public String randomString = commonUtils.generateRandomString(3);
+
+
     public AddAllFieldTypesUserObject() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -149,12 +156,12 @@ public class AddAllFieldTypesUserObject extends DriverBase {
 
     public void UserSelectTextMultiLineFromTheFieldTypeDropdown(){
         fieldType_dropdown.click();
-        multiSelectDropdown_option.click();
+        textMultiLine_option.click();
         sleep(2000);
     }
 
     public void EnterFieldNameForTextMultiLineType(){
-        NewFieldName = "Office Address";
+        NewFieldName = "Office Address " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -165,7 +172,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForNumericType() {
-        NewFieldName = "Company Phone Number Test";
+        NewFieldName = "Company Phone Number Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -176,7 +183,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForSingleSelectDropdownType(){
-        NewFieldName = "Religion";
+        NewFieldName = "Religion " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -186,7 +193,9 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void NewFieldWillBeShownInTheList() {
-        Assert.assertTrue(getDriver().findElement(By.xpath("//div//span[text()='" + NewFieldName + "']")).isDisplayed());
+        sleep(2000);
+        List<WebElement> newFields = getDriver().findElements(By.xpath("//div//span[text()='" + NewFieldName + "']"));
+        Assert.assertTrue(newFields.size()>0);
     }
 
     public void UserSelectTextSingleLineFromTheFieldTypeDropdown(){
@@ -196,7 +205,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForTextSingleLineType(){
-        NewFieldName = "About";
+        NewFieldName = "About " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -207,12 +216,12 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForMultiSelectDropdownType() {
-        NewFieldName = "Company Test";
+        NewFieldName = "Company Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void enterOptions() {
-        options_field.sendKeys("ChannelPlay");
+        options_field.sendKeys("ChannelPlay " + randomString);
     }
 
     public void UserSelectDateFromTheFieldTypeDropdown() {
@@ -222,7 +231,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForDateType() {
-        NewFieldName = "Started Date Test";
+        NewFieldName = "Started Date Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -237,7 +246,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForEmailType() {
-        NewFieldName = "Company Registered Email Test";
+        NewFieldName = "Company Registered Email Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -248,7 +257,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForImageType(){
-        NewFieldName = "Address Proof";
+        NewFieldName = "Address Proof " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -259,7 +268,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForDocumentUploadType() {
-        NewFieldName = "Company Registration Certificate Test";
+        NewFieldName = "Company Registration Certificate Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -270,7 +279,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForVideoType() {
-        NewFieldName = "Company Location Video Test";
+        NewFieldName = "Company Location Video Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -281,14 +290,13 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForReferenceDocumentsType() {
-        NewFieldName = "Company Architecture Details Test";
+        NewFieldName = "Company Architecture Details Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void UploadAFileUnderUploadFile() {
         String path = System.getProperty("user.dir");
-        uploadFile_field.sendKeys(path + "/src/main/resources/Files/samplePDF.pdf");
-
+        uploadFile_field.sendKeys(path + "/Files/sample.pdf");
         action.moveToElement(save_button);
         sleep(2000);
     }
@@ -300,7 +308,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForHeaderTextType() {
-        NewFieldName = "Add Header Details Test";
+        NewFieldName = "Add Header Details Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -311,7 +319,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForNormalTextType() {
-        NewFieldName = "Customer Normal Text Test";
+        NewFieldName = "Customer Normal Text Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -322,7 +330,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForPageSeparatorType() {
-        NewFieldName = "Customer Page Separator Test";
+        NewFieldName = "Customer Page Separator Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -333,7 +341,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameLinkFromOtherEntityType(){
-        NewFieldName = "Child Entity";
+        NewFieldName = "Child Entity " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -344,7 +352,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameForDataListType() {
-        NewFieldName = "Data List Module";
+        NewFieldName = "Data List Module " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -395,7 +403,7 @@ public class AddAllFieldTypesUserObject extends DriverBase {
     }
 
     public void EnterFieldNameOTPValidationType() {
-        NewFieldName = "Verify Phone OTP Test";
+        NewFieldName = "Verify Phone OTP Test " + randomString;
         fieldName_field.sendKeys(NewFieldName);
     }
 

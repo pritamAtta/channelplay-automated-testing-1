@@ -1,10 +1,10 @@
-
+@AUT4
 Feature: Login to CRM portal
 
   Background:
     Given User is on the login page
 
-
+    @Scenario1
     Scenario Outline: User can Successfully login on CRM Portal with different users
       When User enter email "<username>"
       And User enter password "<password>"
@@ -18,7 +18,7 @@ Feature: Login to CRM portal
         |taufik@1channel.ai|test1234|
 
 
-
+  @Scenario2
   Scenario Outline: Login with valid and Invalid Credentials - valid username and invalid password ,
                     invalid username and valid password , invalid username and invalid password
 

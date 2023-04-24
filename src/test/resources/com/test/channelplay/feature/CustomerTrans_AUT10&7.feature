@@ -1,4 +1,4 @@
-#@currentFile
+@AUT10
 Feature: Add a new Customer with Save and Add New Customer functionality
   and also check Update the Customer.
 
@@ -6,7 +6,7 @@ Feature: Add a new Customer with Save and Add New Customer functionality
     Given after login to crm user will be on the Customer page under CRM
     And user select CRM and Click on Customer
 
-
+    @Scenario1
     Scenario: Add customer with all fields
       When User Click on Add button
       And user Enter Customer Name
@@ -26,7 +26,7 @@ Feature: Add a new Customer with Save and Add New Customer functionality
       And user click save button
       Then customer will added successfully with active status
 
-
+  @Scenario2
   Scenario: Customer add with Save and Add new button
     When User Click on Add button
     And user Enter Customer Name
@@ -47,7 +47,7 @@ Feature: Add a new Customer with Save and Add New Customer functionality
     And then user click on cancel button
     Then customer will added successfully with active status
 
-
+  @Scenario3
   Scenario: Edit Customer with all fields
     When User Click on Edit button
     And user Enter Customer Name

@@ -1,5 +1,6 @@
 package com.test.channelplay.object;
 
+import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
 import io.cucumber.java8.Pa;
 import org.apache.tools.ant.taskdefs.Sleep;
@@ -51,7 +52,10 @@ public class AddProductObject extends DriverBase {
         PageFactory.initElements(getDriver(),this);
     }
 
-    public String ProductValueHolder;
+
+    public String dataPicker;
+    CommonUtils commonUtils = new CommonUtils();
+    String productName;
 
 
     public void login(String username,String password){
@@ -69,8 +73,9 @@ public class AddProductObject extends DriverBase {
     }
 
     public void UserWillEnterAProductName(){
-        ProductValueHolder = "Apple";
-        ProductName_Field.sendKeys(ProductValueHolder);
+        dataPicker = commonUtils.generateRandomString(2);
+        productName = "Apple_" + dataPicker;
+        ProductName_Field.sendKeys(productName);
     }
     public void UserWillEnterAProductCode(){
         ProductCode_Field.sendKeys("p-101");
@@ -86,10 +91,10 @@ public class AddProductObject extends DriverBase {
         sleep(6000);
     }
     public void ProductWillBeAddedSuccessfullyAndWillShowInTheList(){
-        Search_Field.sendKeys(ProductValueHolder);
+        Search_Field.sendKeys(productName);
         sleep(3000);
-        String ActualProductName = getDriver().findElement(By.xpath("//div[text()='"+ProductValueHolder+"']")).getText();
-        Assert.assertEquals(ProductValueHolder,ActualProductName);
+        String ActualProductName = getDriver().findElement(By.xpath("//div[text()='"+productName+"']")).getText();
+        Assert.assertEquals(productName,ActualProductName);
     }
 
     public void sleep(long s){

@@ -16,8 +16,8 @@ public class CD_AddOpportunitySteps extends DriverBase {
     CD_AddContactObject CDAddContactObject = new CD_AddContactObject();
     CommonUtils commonUtils = new CommonUtils();
 
-    @Given("after successfully logged in to crm user will be on the home page")
-    public void afterSuccessfullyLoggedInToCrmUserWillBeOnTheHomePage() {
+    @Given("after user successfully logged in to crm user will be on the home page")
+    public void afterUserSuccessfullyLoggedInToCrmUserWillBeOnTheHomePage() {
         getDriver().get(GetProperty.value("appUrl"));
         commonUtils.validatePage("Assistive");
         opportunityTransObject.loginCRM(GetProperty.value("username"), GetProperty.value("password"));

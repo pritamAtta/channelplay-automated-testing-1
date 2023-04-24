@@ -3,17 +3,20 @@ package com.test.channelplay.utils;
 import com.test.channelplay.object.CRMloginObject;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import org.openqa.selenium.interactions.Action;
 
 import static java.lang.System.lineSeparator;
 import static java.util.stream.Collectors.joining;
@@ -60,7 +63,12 @@ public class CommonUtils extends DriverBase {
         }
         return sb.toString();
     }
-
+    public void dragAndDrop(WebElement fromElement, WebElement toElement){
+        Actions builder = new Actions(getDriver());
+        Action DragAndDrop = builder.clickAndHold(fromElement).moveToElement(toElement).release(toElement).build();
+        sleep(1000);
+       DragAndDrop.perform();
+    }
 
     public void sleep(long s) {
         try {

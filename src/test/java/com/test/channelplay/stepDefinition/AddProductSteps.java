@@ -16,7 +16,7 @@ public class AddProductSteps extends DriverBase {
 
     @Given("After login the user will be on the Products page under Admin Menu")
     public void afterLoginTheUserWillBeOnTheProductsPageUnderAdminMenu() {
-        getDriver().get(GetProperty.value("crmPortal"));
+        getDriver().get(GetProperty.value("appUrl"));
         commonUtils.validatePage("Assistive");
         addProductObject.login(GetProperty.value("username"),GetProperty.value("password"));
     }

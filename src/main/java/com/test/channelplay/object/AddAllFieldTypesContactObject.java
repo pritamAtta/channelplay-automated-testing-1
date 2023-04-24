@@ -107,6 +107,8 @@ public class AddAllFieldTypesContactObject extends DriverBase {
     @FindBy(xpath = "//span[text()=\"Field added.\"]")
     private WebElement success_message;
 
+
+
     CommonUtils commonUtils = new CommonUtils();
     Actions action = new Actions(getDriver());
 
@@ -229,10 +231,8 @@ public class AddAllFieldTypesContactObject extends DriverBase {
 
     public void UploadAFileUnderUploadFile(){
         String path = System.getProperty("user.dir");
-        uploadFile_field.sendKeys(path+"/src/main/resources/Files/samplePDF.pdf");
-
-        action.moveToElement(save_button);
-        sleep(2000);
+        uploadFile_field.sendKeys(path+"/Files/sample.pdf");
+        sleep(4000);
     }
 
     public void UserSelectHeaderTextFromTheFieldTypeDropdown(){

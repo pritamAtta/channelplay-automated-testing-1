@@ -14,7 +14,7 @@ public class CRMloginSteps extends DriverBase {
     CRMloginObject crMloginObject = new CRMloginObject();
     @Given("User is on the login page")
     public void userIsOnTheLoginPage() {
-        getDriver().get(GetProperty.value("crmPortal"));
+        getDriver().get(GetProperty.value("appUrl"));
         commonUtils.validatePage("Assistive");
     }
 

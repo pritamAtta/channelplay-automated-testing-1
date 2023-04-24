@@ -1,4 +1,4 @@
-#@ProductForm
+@AUT17
 Feature: Assistive Admin -> Product Form
 
   Background:

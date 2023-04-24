@@ -4,6 +4,7 @@ import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -46,14 +47,23 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     @FindBy(xpath = "//mat-option/span[text()=\" Multi Select Dropdown \"]")
     private WebElement multiSelectDropdown_option;
 
-        @FindBy(xpath = "//label[text()=\"Options\"]/parent::div/following-sibling::div//input")
-        private WebElement options_field;
+    @FindBy(xpath = "//label[text()=\"Options\"]/parent::div/following-sibling::div//div[@cdkdrag][1]//input")
+    private WebElement options_field1;
+
+    @FindBy(xpath = "//label[text()=\"Options\"]/parent::div/following-sibling::div//div[@cdkdrag][2]//input")
+    private WebElement options_field2;
+
+    @FindBy(xpath = "//label[text()=\"Options\"]/parent::div/following-sibling::div//div[@cdkdrag][3]//input")
+    private WebElement options_field3;
+
+    @FindBy(xpath = "//label[text()=\"Options\"]/parent::div/following-sibling::div//div[@cdkdrag][4]//input")
+    private WebElement options_field4;
 
     @FindBy(xpath = "//mat-option/span[text()=\" Date \"]")
     private WebElement date_option;
 
-        @FindBy(xpath = "//label[text()=\"Value Type\"]/parent::div/following-sibling::div//mat-radio-button[@id=\"mat-radio-3\"]")
-        private WebElement CustomValueType_radioButton;
+    @FindBy(xpath = "//label[text()=\"Value Type\"]/parent::div/following-sibling::div//mat-radio-button[@id=\"mat-radio-3\"]")
+    private WebElement CustomValueType_radioButton;
 
     @FindBy(xpath = "//mat-option/span[text()=\" Email \"]")
     private WebElement email_option;
@@ -67,8 +77,8 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     @FindBy(xpath = "//mat-option/span[text()=\" Reference Documents \"]")
     private WebElement referenceDocuments_option;
 
-        @FindBy(xpath = "//input[@id=\"fileInput\"]")
-        private WebElement uploadFile_field;
+    @FindBy(xpath = "//input[@id=\"fileInput\"]")
+    private WebElement uploadFile_field;
 
     @FindBy(xpath = "//mat-option/span[text()=\" Header Text \"]")
     private WebElement headerText_option;
@@ -82,20 +92,20 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     @FindBy(xpath = "//mat-option/span[text()=\" Data List \"]")
     private WebElement dataList_option;
 
-        @FindBy(xpath = "//label[text()=\"List Name\"]/parent::div/following-sibling::div/mat-form-field/div")
-        private WebElement listName_dropdown;
+    @FindBy(xpath = "//label[text()=\"List Name\"]/parent::div/following-sibling::div/mat-form-field/div")
+    private WebElement listName_dropdown;
 
-        @FindBy(xpath = "//h4[text()=\"Add Field\"]/parent::div/following-sibling::div[2]/button[text()=\"Cancel\"]")
-        private WebElement cancel_button;
+    @FindBy(xpath = "//h4[text()=\"Add Field\"]/parent::div/following-sibling::div[2]/button[text()=\"Cancel\"]")
+    private WebElement cancel_button;
 
     @FindBy(xpath = "//mat-option/span[text()=\" OTP Validation \"]")
     private WebElement OTPValidation_option;
 
-        @FindBy(xpath = "//label[text()=\"Entity\"]/parent::div/following-sibling::div/mat-form-field")
-        private WebElement entity_dropdown;
+    @FindBy(xpath = "//label[text()=\"Entity\"]/parent::div/following-sibling::div/mat-form-field")
+    private WebElement entity_dropdown;
 
-        @FindBy(xpath = "//label[text()=\"Entity Field\"]/parent::div/following-sibling::div/mat-form-field")
-        private WebElement entityField_dropdown;
+    @FindBy(xpath = "//label[text()=\"Entity Field\"]/parent::div/following-sibling::div/mat-form-field")
+    private WebElement entityField_dropdown;
 
     @FindBy(xpath = "//button[text()=\"Save\"]")
     private WebElement save_button;
@@ -103,6 +113,15 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
 
     @FindBy(xpath = "//span[text()=\"Field added.\"]")
     private WebElement success_message;
+
+    @FindBy(xpath = "//label[text()=\"Status\"]/parent::div/following-sibling::div/mat-form-field/div/div")
+    private WebElement status_dropdown;
+
+    @FindBy(xpath = "//span[text()=\"Inactive\"]")
+    private WebElement inactive_option;
+
+    @FindBy(xpath = "//input[@placeholder=\"Search\"]")
+    private WebElement search_Bar;
 
 
 
@@ -121,7 +140,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
         password_field.sendKeys(password);
         submit_button.click();
         commonUtils.waitForPageToLoad();
-        sleep(10000);
+        sleep(15000);
         settings_menu.click();
         CRM_dropdown.click();
         customer_option.click();
@@ -139,17 +158,35 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForNumericType(){
-        NewFieldName = "Company Phone Number Test -Review3";
+        NewFieldName = "Phone";
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void SelectSaveButton(){
+        sleep(3000);
+        action.moveToElement(save_button);
         save_button.click();
-        sleep(4000);
+        sleep(8000);
+    }
+
+    public void inactiveCreatedField(String fieldName){
+        WebElement action_Button = getDriver().findElement(By.xpath("//span[text()='"+ fieldName +"']//ancestor::div[3]//img"));
+        action_Button.click();
+        sleep(3000);
+        action.moveToElement(status_dropdown).click().build().perform();
+        inactive_option.click();
+        save_button.click();
+        sleep(3000);
     }
 
     public void NewFieldWillBeShownInTheList(){
-        Assert.assertTrue(getDriver().findElement(By.xpath("//div//span[text()='"+NewFieldName+"']")).isDisplayed());
+        sleep(1000);
+        search_Bar.sendKeys(NewFieldName);
+        sleep(3000);
+        WebElement newlyAddedField = getDriver().findElement(By.xpath("//span[contains(text(), '"+NewFieldName+"')]/ancestor::div[2]"));
+        Assert.assertTrue(newlyAddedField.isDisplayed());
+        sleep(3000);
+//        inactiveCreatedField(NewFieldName);
     }
 
     public void UserSelectMultiSelectDropdownFromTheFieldTypeDropdown(){
@@ -159,13 +196,23 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForMultiSelectDropdownType(){
-        NewFieldName = "Company Test -Review3 ";
+        NewFieldName = "Time Zone";
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void enterOptions(){
-        options_field.sendKeys("ChannelPlay -Review3");
+        options_field1.sendKeys("GMT");
+        options_field1.sendKeys(Keys.ENTER);
+        commonUtils.sleep(2000);
+        options_field2.sendKeys("IST");
+        options_field2.sendKeys(Keys.ENTER);
+        commonUtils.sleep(2000);
+        options_field3.sendKeys("UAT");
+        commonUtils.sleep(2000);
+
+
     }
+
 
     public void UserSelectDateFromTheFieldTypeDropdown(){
         fieldType_dropdown.click();
@@ -174,7 +221,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForDateType(){
-        NewFieldName = "Started Date Test -Review3";
+        NewFieldName = "Date";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -189,7 +236,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForEmailType(){
-        NewFieldName = "Company Registered Email Test -Review3";
+        NewFieldName = "Customer Email";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -200,7 +247,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForDocumentUploadType(){
-        NewFieldName = "Company Registration Certificate Test -Review3";
+        NewFieldName = "Document";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -211,7 +258,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForVideoType(){
-        NewFieldName = "Company Location Video Test -Review3";
+        NewFieldName = "Video";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -222,16 +269,14 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForReferenceDocumentsType(){
-        NewFieldName = "Company Architecture Details Test -Review3";
+        NewFieldName = "Reference Document";
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void UploadAFileUnderUploadFile(){
         String path = System.getProperty("user.dir");
-        uploadFile_field.sendKeys(path+"/Files/samplePDF.pdf");
-
-        action.moveToElement(save_button);
-        sleep(2000);
+        uploadFile_field.sendKeys(path+"/Files/sample.pdf");
+        sleep(4000);
     }
 
     public void UserSelectHeaderTextFromTheFieldTypeDropdown(){
@@ -241,7 +286,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForHeaderTextType(){
-        NewFieldName = "Add Header Details Test -Review3";
+        NewFieldName = "Assistive";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -252,7 +297,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForNormalTextType(){
-        NewFieldName = "Customer Normal Text Test -Review3";
+        NewFieldName = "Customer Normal Text Test " + commonUtils.generateRandomString(3);
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -263,7 +308,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForPageSeparatorType(){
-        NewFieldName = "Customer Page Separator Test -Review3";
+        NewFieldName = "Customer Personal Details";
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -274,7 +319,7 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameForDataListType(){
-        NewFieldName = "Data List Module -Review3";
+        NewFieldName = "Data List Module " + commonUtils.generateRandomString(3);
         fieldName_field.sendKeys(NewFieldName);
     }
 
@@ -325,13 +370,13 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
     }
 
     public void EnterFieldNameOTPValidationType(){
-        NewFieldName = "Verify Phone OTP Test-Review3";
+        NewFieldName = "Verify Phone OTP " + commonUtils.generateRandomString(3);
         fieldName_field.sendKeys(NewFieldName);
     }
 
     public void EnterEntity(){
         entity_dropdown.click();
-        getDriver().findElement(By.xpath("//mat-option[2]")).click();
+        getDriver().findElement(By.xpath("//mat-option/span[text()=\" Opportunity \"]")).click();
         sleep(3000);
     }
 
@@ -340,7 +385,6 @@ public class AddAllFieldTypesCustomerObject extends DriverBase {
         sleep(3000);
         getDriver().findElement(By.xpath("//mat-option[2]")).click();
         sleep(2000);
-
     }
 
     public void sleep(long s){

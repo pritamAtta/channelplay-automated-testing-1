@@ -1,19 +1,18 @@
 package com.test.channelplay.stepDefinition;
 
-import com.test.channelplay.object.forgot_Password;
+import com.test.channelplay.object.ForgotPassword_Object;
 import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
 import com.test.channelplay.utils.GetProperty;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.slf4j.ILoggerFactory;
 import org.testng.Assert;
 
-public class Forgot_Password_step extends DriverBase {
+public class ForgotPassword_Steps extends DriverBase {
 
     CommonUtils commonUtils = new CommonUtils();
-    forgot_Password forgot_Pass = new forgot_Password();
+    ForgotPassword_Object forgot_Pass = new ForgotPassword_Object();
 
     @Given("user is on Assistive login page")
     public void user_is_on_assistive_login_page() {
@@ -45,7 +44,6 @@ public class Forgot_Password_step extends DriverBase {
 
     @Then("navigate to verify email link")
     public void navigate_to_verify_email_link() {
-        getDriver().navigate().to(GetProperty.value("mail_verify_url"));
         forgot_Pass.Navigate_to_verify_email_link();
     }
 
@@ -56,8 +54,7 @@ public class Forgot_Password_step extends DriverBase {
 
     @Then("enter new password under confirm password and click on SignIn button")
     public void enter_new_password_under_confirm_password_and_click_on_SignIn_button() {
-//          forgot_Pass.Validate_reset_pass_userName();
-        forgot_Pass.Enter_new_password_under_confirm_password_and_click_on_SignIn_button();
+        forgot_Pass.Enter_new_password_under_confirm_password_and_click_on_SignIn_button(GetProperty.value("forgot_pass_new"));
     }
 
     @Then("enter user email and new password at login page and click on Signin button")

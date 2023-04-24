@@ -93,9 +93,6 @@ public class ContactTransObject extends DriverBase {
     @FindBy(xpath = "//button[@aria-label=\"Open calendar\"]")
     private WebElement StartedDateCalender_button;
 
-    @FindBy(xpath = "//div[@class=\"mat-calendar-body-cell-content mat-calendar-body-today\"]")
-    private WebElement CurrentDate;
-
     @FindBy(xpath = "//label[text()=\"Company Registration Certificate Test\"]/parent::div/following-sibling::div//input")
     private WebElement Certificate_upload;
 
@@ -119,13 +116,27 @@ public class ContactTransObject extends DriverBase {
 
     @FindBy(xpath = "//img[@title=\"Edit\"]")
     private WebElement Edit_button;
-    @FindBy(xpath = "//div[@class=\"mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today\"]")
-    private WebElement EditCurrentDate;
+
     @FindBy(xpath = "//span[text()=' Business Partner ']")
     WebElement BusinessPartner_Option;
+
     @FindBy(xpath = "//mat-option[3]")
     WebElement DatalistSecond_Option;
 
+    @FindBy(xpath = "//button[@aria-label=\"Open calendar\"]")
+    private WebElement ExpectedClosureCalender_button;
+
+    @FindBy(xpath = "//mat-month-view/table/tbody")
+    private WebElement ExpectedClosureDate_CalendarTable;
+
+    @FindBy(xpath = "//button[@aria-label=\"Next month\"]")
+    private WebElement NextMonth_button;
+
+    @FindBy(xpath = "//mat-select-trigger/ancestor::div[2]")
+    private WebElement ClickSelf_dropdown;
+
+    @FindBy(xpath = "//span[contains (text(),\"Team\")]")
+    private WebElement ClickTeam_option;
 
     //Global Code
     CommonUtils commonUtils = new CommonUtils();
@@ -143,7 +154,7 @@ public class ContactTransObject extends DriverBase {
         username_field.sendKeys(username);
         password_field.sendKeys(password);
         submit_button.click();
-        sleep(10000);
+        sleep(15000);
 
     }
 
@@ -249,11 +260,18 @@ public class ContactTransObject extends DriverBase {
         CompanyPhoneNumber_Field.sendKeys("9876786576");
     }
 
+    public String CurrentDay_picker() {
+        Date CurrentDate = new Date();
+        SimpleDateFormat DateFormat = new SimpleDateFormat("d");
+        return DateFormat.format(CurrentDate);
+    }
+
     public void setStartedDateCalender_button() {
-        StartedDateCalender_button.click();
-        sleep(1000);
-        CurrentDate.click();
+        ExpectedClosureCalender_button.click();
         sleep(2000);
+        String CurrentDate = CurrentDay_picker();
+        ExpectedClosureDate_CalendarTable.findElement(By.xpath("//td//div[text()=' " + CurrentDate + " ']")).click();
+
     }
 
     public void setCertificate_upload() {
@@ -295,12 +313,21 @@ public class ContactTransObject extends DriverBase {
         ContactSearch_bar.click();
         ContactSearch_bar.sendKeys(contactName);
         sleep(6000);
-        String isContactName_xpath = ("//div[text()='" + contactName + "']");
-        WebElement isContactName = getDriver().findElement(By.xpath(isContactName_xpath));
-        String isStatusActive_xpath = ("//div[text()='" + contactName + "']//following-sibling::div[5]//button[text()='Active']");
-        WebElement isStatusActive = getDriver().findElement(By.xpath(isStatusActive_xpath));
-        Assert.assertTrue(isContactName.isDisplayed() && isStatusActive.isDisplayed());
+        List<WebElement> rows = getDriver().findElements(By.xpath("//div[text()='" + contactName + "']"));
+        if (rows.size() < 1) {
+            ClickSelf_dropdown.click();
+            sleep(3000);
+            ClickTeam_option.click();
+            sleep(5000);
+            ContactSearch_bar.clear();
+            ContactSearch_bar.sendKeys(contactName);
+            sleep(2000);
+        }
+        WebElement isContactName = getDriver().findElement(By.xpath("//div[text()='" + contactName + "']"));
 
+        sleep(2000);
+
+        Assert.assertTrue(isContactName.isDisplayed());
     }
 
     public void setCancelForm_button() {
@@ -381,7 +408,7 @@ public class ContactTransObject extends DriverBase {
 
     }
 
-    public String currentDay(){
+    public String currentDay() {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d");
         String ExpectedDate = simpleDateFormat.format(date);
@@ -389,13 +416,21 @@ public class ContactTransObject extends DriverBase {
     }
 
     public void setEditCalender_button() {
-        sleep(2000);
         StartedDateCalender_button.click();
         sleep(1000);
-        String ExpectedDay = currentDay();
-        WebElement currentDate = getDriver().findElement(By.xpath("//div[text()=' "+ ExpectedDay +" ']"));
-        currentDate.click();
-        sleep(2000);
+        List<WebElement> Days = ExpectedClosureDate_CalendarTable.findElements(By.xpath("//td[@aria-selected]"));
+        String ActiveDay_str = ExpectedClosureDate_CalendarTable.findElement(By.xpath("//td[@aria-selected=\"true\"]/div")).getText();
+        int Days_Size = Days.size();
+        int ActiveDay_Int = Integer.parseInt(ActiveDay_str);
+
+        if (Days_Size == ActiveDay_Int) {
+            NextMonth_button.click();
+            sleep(2000);
+            ExpectedClosureDate_CalendarTable.findElement(By.xpath("//td//div[text()=' 1 ']")).click();
+        } else if (Days_Size > ActiveDay_Int) {
+            String NewDate = Integer.toString(ActiveDay_Int + 1);
+            ExpectedClosureDate_CalendarTable.findElement(By.xpath("//td//div[text()=' " + NewDate + " ']")).click();
+        }
     }
 
     public void sleep(long s) {

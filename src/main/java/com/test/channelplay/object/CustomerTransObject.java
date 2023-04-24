@@ -2,7 +2,6 @@ package com.test.channelplay.object;
 
 import com.test.channelplay.utils.CommonUtils;
 import com.test.channelplay.utils.DriverBase;
-import com.test.channelplay.utils.WebDriverUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,7 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import java.time.Duration;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class CustomerTransObject extends DriverBase {
@@ -78,17 +78,10 @@ public class CustomerTransObject extends DriverBase {
     @FindBy(xpath = "//button[@aria-label=\"Open calendar\"]")
     private WebElement Calender_button;
 
-    @FindBy(xpath = "//div[@class=\"mat-calendar-body-cell-content mat-calendar-body-today\"]\n")
-    private WebElement CurrentDate;
-
-    @FindBy(xpath = "//div[text()=' 15 ']")
-    private WebElement EditCurrentDate;
-
-
     @FindBy(xpath = "//label[text()=\"Customer Email\"]/parent::div/following-sibling::div//input")
     private WebElement Email_Field;
 
-    @FindBy(xpath = "//label[text()=\"Ducument\"]/parent::div/following-sibling::div//input")
+    @FindBy(xpath = "//label[text()=\"Document\"]/parent::div/following-sibling::div//input")
     private WebElement Document_upload;
 
     @FindBy(xpath = "//label[text()=\"Video\"]/parent::div/following-sibling::div//input")
@@ -112,6 +105,20 @@ public class CustomerTransObject extends DriverBase {
     @FindBy(xpath = "//img[@title=\"Edit\"]")
     private WebElement Edit_button;
 
+    @FindBy(xpath = "//mat-month-view/table/tbody")
+    private WebElement ExpectedClosureDate_CalendarTable;
+
+    @FindBy(xpath = "//button[@aria-label=\"Next month\"]")
+    private WebElement NextMonth_button;
+
+    @FindBy(xpath = "//button[@aria-label=\"Open calendar\"]")
+    private WebElement ExpectedClosureCalender_button;
+
+    @FindBy(xpath = "//mat-select-trigger/ancestor::div[2]")
+    private WebElement ClickSelf_dropdown;
+
+    @FindBy(xpath = "//span[contains (text(),\"Team\")]")
+    private WebElement ClickTeam_option;
 
     //Global Code
     CommonUtils commonUtils = new CommonUtils();
@@ -127,28 +134,31 @@ public class CustomerTransObject extends DriverBase {
         username_field.sendKeys(username);
         password_field.sendKeys(password);
         submit_button.click();
-        sleep(10000);
+        sleep(12000);
 
     }
 
     public void Customer() {
-        sleep(3000);
+        sleep(10000);
         CRM_menu.click();
         sleep(2000);
         Customer_menu.click();
-        sleep(5000);
+        sleep(8000);
+
     }
 
     public void UserClickOnAddButton() {
-
-        Add_button.click();
         sleep(3000);
+        Add_button.click();
+        sleep(5000);
     }
 
     public void addCus() {
-        dataPicker = commonUtils.generateRandomString(5);
+        dataPicker = commonUtils.generateRandomString(4);
         customerName = "user " + dataPicker;
         CustomerName_field.sendKeys(customerName);
+
+
     }
 
     public void setCustomerType_dropdown() {
@@ -158,7 +168,8 @@ public class CustomerTransObject extends DriverBase {
     }
 
     public void setAddress_Field() {
-        Address_Field.sendKeys("Kolkata new bazaar");
+        String[] Address = {"Kolkata new bazaar","South Ex New Delhi", "Mohammad pur patna", "New Town colony west bengal"};
+        Address_Field.sendKeys(Address[1]);
         sleep(2000);
     }
 
@@ -169,9 +180,7 @@ public class CustomerTransObject extends DriverBase {
     }
 
     public void setIndia_Option() {
-        India_Option.click();
-
-
+       India_Option.click();
     }
 
     public void setState_Dropdown() {
@@ -198,12 +207,24 @@ public class CustomerTransObject extends DriverBase {
         System.out.println(rootPath + "....................>");
         sleep(3000);
         Photo_upload.sendKeys(rootPath + "/Files/1640076584197.jpg");
-        sleep(3000);
+        sleep(4000);
     }
 
     public void setPhone_Field() {
-        Phone_Field.sendKeys("9875678767");
-        sleep(1000);
+        int randomNumber = (int) (Math.random() * 999);
+        String phoneNumber = "9835222" + randomNumber;
+        int phoneNumberLength = phoneNumber.length();
+
+        if (phoneNumberLength < 9) {
+            Phone_Field.sendKeys("22");
+            sleep(3000);
+        } else if (phoneNumberLength < 10) {
+            Phone_Field.sendKeys("1");
+            sleep(3000);
+        }
+
+        Phone_Field.sendKeys(phoneNumber);
+        sleep(2000);
     }
 
     public void setTimeZone_Dropdown() {
@@ -216,24 +237,31 @@ public class CustomerTransObject extends DriverBase {
 
     }
 
+    public String CurrentDay_picker() {
+        Date CurrentDate = new Date();
+        SimpleDateFormat DateFormat = new SimpleDateFormat("d");
+        return DateFormat.format(CurrentDate);
+    }
+
     public void setCalender_button() {
+        ExpectedClosureCalender_button.click();
         sleep(2000);
-        Calender_button.click();
-        sleep(1000);
-        CurrentDate.click();
-        sleep(2000);
+        String CurrentDate = CurrentDay_picker();
+        ExpectedClosureDate_CalendarTable.findElement(By.xpath("//td//div[text()=' " + CurrentDate + " ']")).click();
+
     }
 
     public void setEmail_Field() {
         Email_Field.sendKeys("testuser@test.com");
         sleep(1000);
+
     }
 
     public void setDocument_upload() {
         String rootPath = System.getProperty("user.dir");
         System.out.println(rootPath + "....................>");
         Document_upload.sendKeys(rootPath + "/Files/samplePDF.pdf");
-        sleep(3000);
+        sleep(4000);
     }
 
     public void setVideo_upload() {
@@ -252,28 +280,35 @@ public class CustomerTransObject extends DriverBase {
 
     public void setSave_button() {
         Save_button.click();
-        sleep(7000);
+        sleep(8000);
 
     }
 
     public void setSearch_bar() {
         sleep(2000);
-        Search_bar.click();
         Search_bar.sendKeys(customerName);
         sleep(6000);
-        String isCustomerName_xpath = ("//div[text()='" + customerName + "']");
-        WebElement isCustomerName = getDriver().findElement(By.xpath(isCustomerName_xpath));
-        String isStatusActive_xpath = ("//div[text()='" + customerName + "']//following-sibling::div[5]//button[text()='Active']");
-        WebElement isStatusActive = getDriver().findElement(By.xpath(isStatusActive_xpath));
-        Assert.assertTrue(isCustomerName.isDisplayed() && isStatusActive.isDisplayed());
+        List<WebElement> rows = getDriver().findElements(By.xpath("//div[text()='" + customerName + "']"));
+        if (rows.size() < 1) {
+            ClickSelf_dropdown.click();
+            sleep(3000);
+            ClickTeam_option.click();
+            sleep(5000);
+            Search_bar.clear();
+            Search_bar.sendKeys(customerName);
+            sleep(2000);
+        }
+        WebElement isCustomerName = getDriver().findElement(By.xpath("//div[text()='" + customerName + "']"));
 
+        sleep(2000);
 
+        Assert.assertTrue(isCustomerName.isDisplayed());
     }
+
 
     //Scenario: Customer add with Save and Add new button
     public void setSaveAndAddNew_button() {
 
-        sleep(3000);
         SaveAndAddNew_button.click();
         sleep(6000);
     }
@@ -298,7 +333,7 @@ public class CustomerTransObject extends DriverBase {
 
         WebElement PageArea = getDriver().findElement(By.xpath("//h4[text()='Edit Customer']/ancestor::div[2]"));
         List<WebElement> files = PageArea.findElements(By.xpath("//img[@class=\"close-svg\"]"));
-        for (int a = 1; a<=files.size(); a++){
+        for (int a = 1; a <= files.size(); a++) {
             WebElement ClearDocuments_button = getDriver().findElement(By.xpath("//img[@class=\"close-svg\"]"));
             ClearDocuments_button.click();
             sleep(1000);
@@ -349,12 +384,23 @@ public class CustomerTransObject extends DriverBase {
         Second_Option.click();
         sleep(2000);
     }
+
     public void setEditCalender_button() {
-        sleep(2000);
         Calender_button.click();
-        sleep(1000);
-        EditCurrentDate.click();
         sleep(2000);
+        List<WebElement> Days = ExpectedClosureDate_CalendarTable.findElements(By.xpath("//td[@aria-selected]"));
+        String ActiveDay_str = ExpectedClosureDate_CalendarTable.findElement(By.xpath("//td[@aria-selected=\"true\"]/div")).getText();
+        int Days_Size = Days.size();
+        int ActiveDay_Int = Integer.parseInt(ActiveDay_str);
+
+        if (Days_Size == ActiveDay_Int) {
+            NextMonth_button.click();
+            sleep(2000);
+            ExpectedClosureDate_CalendarTable.findElement(By.xpath("//td//div[text()=' 1 ']")).click();
+        } else if (Days_Size > ActiveDay_Int) {
+            String NewDate = Integer.toString(ActiveDay_Int + 1);
+            ExpectedClosureDate_CalendarTable.findElement(By.xpath("//td//div[text()=' " + NewDate + " ']")).click();
+        }
     }
 
 

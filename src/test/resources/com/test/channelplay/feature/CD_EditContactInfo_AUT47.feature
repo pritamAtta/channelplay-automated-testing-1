@@ -1,4 +1,4 @@
-#@currentFile
+@AUT47
 Feature: Edit Contact info from Customer Dashboard
 
   Background:

@@ -1,8 +1,8 @@
-#@currentFile
+@AUT44
 Feature: Add a new Opportunity from Customer Dashboard
 
   Background:
-    Given after successfully logged in to crm user will be on the home page
+    Given after user successfully logged in to crm user will be on the home page
     And user select CRM and Click on Customer menu
 
   Scenario: Add a new opportunity with all fields
