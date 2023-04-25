@@ -27,7 +27,7 @@ node{
 	
         echo "Staring the Jenkins build for the DeepLims Regression Test Suite"
 		
-		git credentialsId : 'ee907e0c-da92-4aa9-b090-f851157df0c6' , url:'https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/ailims-automated-testing' , branch:'test'
+		git credentialsId : '658c0152-5d89-4eaf-b65d-f9d98104dec9' , url:'https://github.com/som0427/channelplay-automated-testing.git' , branch:'test'
 		
     }
 	
