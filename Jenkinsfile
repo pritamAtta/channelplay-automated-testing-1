@@ -27,7 +27,7 @@ node{
 	
         echo "Staring the Jenkins build for the DeepLims Regression Test Suite"
 		
-		git credentialsId : '658c0152-5d89-4eaf-b65d-f9d98104dec9' , url:'https://github.com/som0427/channelplay-automated-testing.git' , branch:'test'
+		git credentialsId : '658c0152-5d89-4eaf-b65d-f9d98104dec9' , url:'https://github.com/som0427/channelplay-automated-testing.git' , branch:'master'
 		
     }
 	
