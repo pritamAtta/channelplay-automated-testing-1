@@ -26,8 +26,8 @@ node{
     stage('Download Source Code'){
 	
         echo "Staring the Jenkins build for the DeepLims Regression Test Suite"
-
-	    git credentialsId: 'f1cb9414-3203-4945-bd7d-0af0a9364e66', url: 'https://github.com/som0427/channelplay-automated-testing'
+		
+		git credentialsId : 'ee907e0c-da92-4aa9-b090-f851157df0c6' , url:'https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/ailims-automated-testing' , branch:'test'
 		
     }
 	
