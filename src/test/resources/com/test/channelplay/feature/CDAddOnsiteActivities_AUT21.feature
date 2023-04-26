@@ -5,6 +5,7 @@ Feature: Add new Onsite activity from Customer dashboard
     Given after successfully logged in to crm user will be on the home page
     And user select CRM and Click on Customer menu
 
+@Scenario1
   Scenario: perform Onsite activity for customer
     When user click on customer dashboard
     And User click on plus button and Select Onsite Activities option
