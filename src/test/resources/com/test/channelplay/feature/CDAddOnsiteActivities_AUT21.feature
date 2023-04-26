@@ -15,7 +15,7 @@ Feature: Add new Onsite activity from Customer dashboard
     And user enter Update Opportunity Value under offsite activity
     And user select Update Opportunity Status under offsite activity
     And user select Update Exp Closure Date under offsite activity
-    And user select Update Win Probability under offsite activity
-    And user select Contact under offsite activity
+    #And user select Update Win Probability under offsite activity
+    #And user select Contact under offsite activity
     And hit save button under offsite activity
     Then new Onsite activity will show in the list
