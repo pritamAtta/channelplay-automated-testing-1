@@ -34,7 +34,7 @@ node{
     stage('Check Maven and Allure Reporting Status'){
 
         sh "mvn --version"
-        sh "/home/ubuntu/software/allure-2.10.0/bin/allure --version"
+        
     }
 
     stage('Executing the maven build'){
