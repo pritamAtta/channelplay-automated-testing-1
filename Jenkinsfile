@@ -31,29 +31,30 @@ node{
 		
     }
 	
-	stage('Check Maven and Allure Reporting Status'){
+    stage('Check Maven and Allure Reporting Status'){
 	
-		sh "mvn --version"
-		sh "/home/ubuntu/software/allure-2.10.0/bin/allure --version"
-	}
+	sh "mvn --version"
+	sh "/home/ubuntu/software/allure-2.10.0/bin/allure --version"
+	    
+    }
 	
-	stage('Executing the maven build'){
+    stage('Executing the maven build'){
 
-	    try {
-             sh 'echo "Jenkins Chrome Version: `google-chrome --version`"'
+	try {
+           	sh 'echo "Jenkins Chrome Version: `google-chrome --version`"'
         } catch (e) {
                  echo "Chrome browser version not found."
         }
-		sh "mvn dependency:resolve"
-		try{
-			sh "mvn clean verify -Dbrowser=$browsertype -Dheadless=$headless -Denvironment=$environment"
+	sh "mvn dependency:resolve"
+	try{
+		sh "mvn clean verify -Dbrowser=$browsertype -Dheadless=$headless -Denvironment=$environment"
 			
-		} catch(e) {
+	} catch(e) {
 
-				build_ok = false
-			echo e.toString()  
-		}
+		build_ok = false
+		echo e.toString()  
 	}
+    }
 	stage('Report Generation'){
 		
 		script {
