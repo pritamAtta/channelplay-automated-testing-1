@@ -9,7 +9,7 @@ import org.testng.annotations.DataProvider;
 		plugin = {"pretty", "rerun:target/rerun.txt", "timeline:target/timeline"},
 
 		dryRun = false,
-		tags = "@AUT20 and @Scenario1",
+		tags = "@AUT21 and @Scenario1",
 
 		
 
