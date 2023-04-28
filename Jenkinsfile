@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 def environment = params.Environment
 def browsertype = params.BrowserType
 def headless = params.Headless
@@ -85,7 +85,7 @@ node{
         currentBuild.result = "FAILURE"
     }
 }
-=======
+
 def environment = params.Environment
 def browsertype = params.BrowserType
 def headless = params.Headless
@@ -172,4 +172,4 @@ node{
         currentBuild.result = "FAILURE"
     }
 }
->>>>>>> Stashed changes
+
