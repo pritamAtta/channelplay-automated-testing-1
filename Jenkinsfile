@@ -58,16 +58,16 @@ node{
     stage('Report Generation'){
 
         script {
-//             sh '''
-//                  if [ -d "allure-results" ] ; then
-//                     echo "Browser=${BrowserType}
-//                         Branch=${BUILD_TAG}
-//                         Headless=${Headless}
-//                         Environment=${Environment}" > target/allure-results/environment.properties
-//                  else
-//                     echo "No results for Allure, skipping report"
-//                  fi
-//              '''
+            sh '''
+                 if [ -d "allure-results" ] ; then
+                    echo "Browser=${BrowserType}
+                        Branch=${BUILD_TAG}
+                        Headless=${Headless}
+                        Environment=${Environment}" > target/allure-results/environment.properties
+                 else
+                    echo "No results for Allure, skipping report"
+                 fi
+             '''
 
             allure([
                     includeProperties: false,
