@@ -58,7 +58,7 @@ node{
     stage('Report Generation'){
 
         script {
-            sh '''
+//             sh '''
 //                  if [ -d "allure-results" ] ; then
 //                     echo "Browser=${BrowserType}
 //                         Branch=${BUILD_TAG}
@@ -70,7 +70,7 @@ node{
 //              '''
 
             allure([
-                    includeProperties: true,
+                    includeProperties: false,
                     jdk: '',
                     properties: [],
                     reportBuildPolicy: 'ALWAYS',
