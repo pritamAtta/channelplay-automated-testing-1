@@ -59,7 +59,7 @@ node{
 
         script {
             sh '''
-                 if [ -d"allure-results" ] ; then
+                 if [ -D"allure-results" ] ; then
                     echo "Browser=${BrowserType}
                         Branch=${BUILD_TAG}
                         Headless=${Headless}
