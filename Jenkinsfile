@@ -58,7 +58,7 @@ node{
     stage('Report Generation'){
 
         script {
-            sh '''
+            sh 
                  if [ -d "allure-results" ] ; then
                     echo "Browser=${BrowserType}
                         Branch=${BUILD_TAG}
@@ -67,7 +67,7 @@ node{
                  else
                     echo "No results for Allure, skipping report"
                  fi
-             '''
+             
 
             allure([
                     includeProperties: false,
