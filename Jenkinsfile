@@ -59,15 +59,15 @@ node{
 
         script {
             sh '''
-                 if [ -d "allure-results" ] ; then
-                    echo "Browser=${BrowserType}
-                        Branch=${BUILD_TAG}
-                        Headless=${Headless}
-                        Environment=${Environment}" > target/allure-results/environment.properties
-                 else
-                    echo "No results for Allure, skipping report"
-                 fi
-             '''
+//                  if [ -d "allure-results" ] ; then
+//                     echo "Browser=${BrowserType}
+//                         Branch=${BUILD_TAG}
+//                         Headless=${Headless}
+//                         Environment=${Environment}" > target/allure-results/environment.properties
+//                  else
+//                     echo "No results for Allure, skipping report"
+//                  fi
+//              '''
 
             allure([
                     includeProperties: true,
