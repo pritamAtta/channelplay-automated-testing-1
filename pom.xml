@@ -12,7 +12,7 @@
     <properties>
         <cucumber.version>6.8.1</cucumber.version>
         <selenium.version>4.0.0-alpha-7</selenium.version>
-        <webdriver.version>4.2.2</webdriver.version>
+        <webdriver.version>5.6.3</webdriver.version>
         <hamcrest.version>1.3</hamcrest.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.surefire.version>3.0.0-M5</maven.surefire.version>
@@ -36,7 +36,7 @@
 
     <dependencies>
 
-           <dependency>
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.version}</version>
