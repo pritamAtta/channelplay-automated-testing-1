@@ -8,7 +8,7 @@ import org.testng.annotations.DataProvider;
 		glue = {"com.test.channelplay.stepDefinition"},
 		plugin = {"pretty", "rerun:target/rerun.txt", "timeline:target/timeline"},
 
-		dryRun = true,
+		dryRun = false,
 		tags = "@AUT10",
 
 		
