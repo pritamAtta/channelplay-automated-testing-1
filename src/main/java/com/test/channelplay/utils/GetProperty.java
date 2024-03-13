@@ -26,17 +26,17 @@ public class GetProperty {
     }
 
     private String getValueForEnv(String key){
-        String envValue = "";
+        String envValue = "QA." + key;
 
-        if(System.getProperty(ENVIRONMENT).equals("QA")){
-            envValue = "QA." + key;
-        }
-        if(System.getProperty(ENVIRONMENT).equals("PreProd")){
-            envValue = "PreProd" + key;
-        }
-        if(System.getProperty(ENVIRONMENT).equals("Prod")){
-            envValue = "Prod." + key;
-        }
+//        if(System.getProperty(ENVIRONMENT).equals("QA")){
+//            envValue = "QA." + key;
+//        }
+//        if(System.getProperty(ENVIRONMENT).equals("PreProd")){
+//            envValue = "PreProd" + key;
+//        }
+//        if(System.getProperty(ENVIRONMENT).equals("Prod")){
+//            envValue = "Prod." + key;
+//        }
 
         return envValue;
     }

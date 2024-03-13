@@ -18,7 +18,6 @@ public class DriverBase {
 
     public static ThreadLocal<WebDriver> tdriver = new ThreadLocal<>();
 
-
     public WebDriver initialize(String browserName)
     {
         if(browserName.equals("chrome")) {
@@ -43,21 +42,15 @@ public class DriverBase {
             firefoxOptions.setAcceptInsecureCerts(true);
             driver = new FirefoxDriver(firefoxOptions);
         }
-
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Constants.TIMINGS_IMPLICIT_TIMEOUT));
         tdriver.set(driver);
         return getDriver();
-
     }
 
     public synchronized WebDriver getDriver() {
         return tdriver.get();
     }
 
-
-
 }
-
-
