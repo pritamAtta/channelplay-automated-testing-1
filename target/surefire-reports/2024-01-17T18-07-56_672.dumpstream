@@ -1,0 +1,4 @@
+# Created at 2024-01-17T18:08:01.673
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Sanity Testing\channelplay-automated-testing\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+
